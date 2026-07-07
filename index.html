@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日米 株式売買代金ランキング</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Yu Gothic',sans-serif;
+         background:#0f1117; color:#e2e8f0; padding:16px; max-width:760px; margin:0 auto; }
+  h1 { font-size:20px; color:#f8fafc; margin:8px 0 4px; }
+  .lead { font-size:12px; color:#64748b; margin-bottom:14px; line-height:1.6; }
+  nav { display:flex; gap:10px; margin-bottom:18px; }
+  nav a { font-size:13px; color:#93c5fd; text-decoration:none; padding:6px 12px;
+          background:#1a2035; border-radius:6px; }
+  h2 { font-size:16px; color:#f1f5f9; margin:26px 0 4px; }
+  .sub { font-size:11px; color:#64748b; margin-bottom:10px; line-height:1.6; }
+  .tablewrap { overflow-x:auto; }
+  table { border-collapse:collapse; font-size:13px; width:100%; }
+  th { text-align:right; padding:6px 8px; font-size:11px; color:#475569;
+       border-bottom:2px solid #2d3748; white-space:nowrap; }
+  th.left { text-align:left; }
+  th.rk { text-align:right; width:28px; }
+  td { padding:7px 8px; text-align:right; white-space:nowrap;
+       border-bottom:1px solid #1a202c; color:#cbd5e1; vertical-align:middle;
+       font-variant-numeric:tabular-nums; line-height:1.5; }
+  tr:hover td { background:#1a2035; }
+  td.rk { color:#64748b; font-weight:700; }
+  td.mvc { text-align:center; }
+  td.nm { text-align:left; color:#e2e8f0; font-weight:600; white-space:normal;
+          min-width:130px; font-size:12px; line-height:1.4; }
+  td.nm .code { font-family:'SF Mono',ui-monospace,monospace; color:#94a3b8; font-size:11px; font-weight:600; }
+  td.num { font-size:12px; }
+  .unit { color:#64748b; font-size:10px; }
+  .pos { color:#4ade80; font-weight:600; }
+  .neg { color:#f87171; font-weight:600; }
+  .flat { color:#64748b; }
+  .mv { font-size:11px; font-weight:700; padding:2px 6px; border-radius:4px; }
+  .mv.pos { background:rgba(74,222,128,0.12); color:#4ade80; }
+  .mv.neg { background:rgba(248,113,113,0.12); color:#f87171; }
+  .mv.new { background:rgba(96,165,250,0.15); color:#60a5fa; }
+  .mv.flat { color:#475569; }
+  .note { font-size:11px; color:#475569; margin-top:8px; line-height:1.6; }
+  footer { font-size:11px; color:#475569; margin:30px 0 10px; line-height:1.8; }
+  footer a { color:#64748b; }
+</style>
+</head>
+<body>
+  <h1>日米 株式売買代金ランキング</h1>
+  <p class="lead">各市場の売買代金（Value Traded）上位25銘柄を毎営業日に自動記録。
+「変動」は前回記録日からの順位変動、売買代金の下段は前回記録日比の変化率。</p>
+  <nav><a href="#us">&#127482;&#127480; 米国株</a><a href="#jp">&#127471;&#127477; 日本株</a></nav>
+  <section id="us">
+    <h2>🇺🇸 米国株 売買代金トップ25</h2>
+    <p class="sub">対象日 2026-07-06（月）　｜　前回比: 2026-07-02（木）　｜　記録 10日分（2026-06-15〜2026-07-06）</p>
+    <div class="tablewrap">
+    <table class="rank-table">
+      <thead><tr>
+        <th class="rk">#</th><th>変動</th><th class="left">銘柄</th>
+        <th>株価 / 前日比</th><th>売買代金 / 前回比</th>
+      </tr></thead>
+      <tbody>
+      <tr>
+        <td class="rk">1</td>
+        <td class="mvc"><span class="mv flat">&#8594;</span></td>
+        <td class="nm"><span class="code">MU</span><br>マイクロン・テクノロジー</td>
+        <td class="num">$984.75<br><span class="pos">+0.94%</span></td>
+        <td class="num">36.1 <span class="unit">B$</span><br><span class="neg">-41%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">2</td>
+        <td class="mvc"><span class="mv pos">&#9650;9</span></td>
+        <td class="nm"><span class="code">SPCX</span><br>スペース・エクスプロレーション・テク</td>
+        <td class="num">$160.42<br><span class="neg">-0.98%</span></td>
+        <td class="num">30.2 <span class="unit">B$</span><br><span class="pos">+211%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">3</td>
+        <td class="mvc"><span class="mv flat">&#8594;</span></td>
+        <td class="nm"><span class="code">TSLA</span><br>テスラ</td>
+        <td class="num">$419.77<br><span class="pos">+6.69%</span></td>
+        <td class="num">22.2 <span class="unit">B$</span><br><span class="neg">-24%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">4</td>
+        <td class="mvc"><span class="mv flat">&#8594;</span></td>
+        <td class="nm"><span class="code">NVDA</span><br>エヌビディア</td>
+        <td class="num">$195.55<br><span class="pos">+0.37%</span></td>
+        <td class="num">21.0 <span class="unit">B$</span><br><span class="neg">-24%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">5</td>
+        <td class="mvc"><span class="mv flat">&#8594;</span></td>
+        <td class="nm"><span class="code">AAPL</span><br>アップル</td>
+        <td class="num">$312.66<br><span class="pos">+1.31%</span></td>
+        <td class="num">16.6 <span class="unit">B$</span><br><span class="neg">-28%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">6</td>
+        <td class="mvc"><span class="mv pos">&#9650;2</span></td>
+        <td class="nm"><span class="code">AMD</span><br>アドバンスト・マイクロ・デバイセズ</td>
+        <td class="num">$552.05<br><span class="pos">+6.61%</span></td>
+        <td class="num">16.5 <span class="unit">B$</span><br><span class="pos">+12%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">7</td>
+        <td class="mvc"><span class="mv neg">&#9660;5</span></td>
+        <td class="nm"><span class="code">SNDK</span><br>サンディスク</td>
+        <td class="num">$1,744.43<br><span class="neg">-0.03%</span></td>
+        <td class="num">15.8 <span class="unit">B$</span><br><span class="neg">-50%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">8</td>
+        <td class="mvc"><span class="mv neg">&#9660;2</span></td>
+        <td class="nm"><span class="code">MSFT</span><br>マイクロソフト</td>
+        <td class="num">$386.74<br><span class="neg">-0.96%</span></td>
+        <td class="num">12.6 <span class="unit">B$</span><br><span class="neg">-23%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">9</td>
+        <td class="mvc"><span class="mv neg">&#9660;2</span></td>
+        <td class="nm"><span class="code">INTC</span><br>インテル</td>
+        <td class="num">$122.20<br><span class="pos">+1.54%</span></td>
+        <td class="num">10.7 <span class="unit">B$</span><br><span class="neg">-30%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">10</td>
+        <td class="mvc"><span class="mv neg">&#9660;1</span></td>
+        <td class="nm"><span class="code">META</span><br>メタ・プラットフォームズ</td>
+        <td class="num">$600.29<br><span class="pos">+2.98%</span></td>
+        <td class="num">10.2 <span class="unit">B$</span><br><span class="neg">-20%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">11</td>
+        <td class="mvc"><span class="mv pos">&#9650;3</span></td>
+        <td class="nm"><span class="code">GOOGL</span><br>アルファベット</td>
+        <td class="num">$366.46<br><span class="pos">+1.82%</span></td>
+        <td class="num">9.7 <span class="unit">B$</span><br><span class="pos">+4%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">12</td>
+        <td class="mvc"><span class="mv flat">&#8594;</span></td>
+        <td class="nm"><span class="code">AVGO</span><br>ブロードコム</td>
+        <td class="num">$373.90<br><span class="pos">+3.73%</span></td>
+        <td class="num">9.2 <span class="unit">B$</span><br><span class="neg">-5%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">13</td>
+        <td class="mvc"><span class="mv neg">&#9660;3</span></td>
+        <td class="nm"><span class="code">AMZN</span><br>アマゾン・ドット・コム</td>
+        <td class="num">$244.16<br><span class="pos">+0.61%</span></td>
+        <td class="num">9.2 <span class="unit">B$</span><br><span class="neg">-22%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">14</td>
+        <td class="mvc"><span class="mv pos">&#9650;7</span></td>
+        <td class="nm"><span class="code">GOOG</span><br>アルファベット</td>
+        <td class="num">$364.90<br><span class="pos">+2.45%</span></td>
+        <td class="num">8.1 <span class="unit">B$</span><br><span class="pos">+47%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">15</td>
+        <td class="mvc"><span class="mv neg">&#9660;2</span></td>
+        <td class="nm"><span class="code">MRVL</span><br>マーベル・テクノロジー</td>
+        <td class="num">$249.27<br><span class="pos">+1.62%</span></td>
+        <td class="num">6.4 <span class="unit">B$</span><br><span class="neg">-33%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">16</td>
+        <td class="mvc"><span class="mv flat">&#8594;</span></td>
+        <td class="nm"><span class="code">TSM</span><br>台湾積体電路製造股分有限公司</td>
+        <td class="num">$451.79<br><span class="pos">+4.06%</span></td>
+        <td class="num">5.8 <span class="unit">B$</span><br><span class="neg">-28%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">17</td>
+        <td class="mvc"><span class="mv neg">&#9660;2</span></td>
+        <td class="nm"><span class="code">AMAT</span><br>アプライド・マテリアルズ</td>
+        <td class="num">$592.79<br><span class="neg">-1.70%</span></td>
+        <td class="num">5.2 <span class="unit">B$</span><br><span class="neg">-43%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">18</td>
+        <td class="mvc"><span class="mv pos">&#9650;1</span></td>
+        <td class="nm"><span class="code">ORCL</span><br>オラクル</td>
+        <td class="num">$143.76<br><span class="pos">+2.49%</span></td>
+        <td class="num">4.9 <span class="unit">B$</span><br><span class="neg">-22%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">19</td>
+        <td class="mvc"><span class="mv neg">&#9660;2</span></td>
+        <td class="nm"><span class="code">PLTR</span><br>パランティア・テクノロジーズ</td>
+        <td class="num">$132.54<br><span class="pos">+2.51%</span></td>
+        <td class="num">4.9 <span class="unit">B$</span><br><span class="neg">-38%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">20</td>
+        <td class="mvc"><span class="mv neg">&#9660;2</span></td>
+        <td class="nm"><span class="code">LRCX</span><br>ラム・リサーチ</td>
+        <td class="num">$350.20<br><span class="neg">-0.34%</span></td>
+        <td class="num">4.8 <span class="unit">B$</span><br><span class="neg">-29%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">21</td>
+        <td class="mvc"><span class="mv pos">&#9650;3</span></td>
+        <td class="nm"><span class="code">WDC</span><br>ウエスタン・デジタル</td>
+        <td class="num">$577.46<br><span class="pos">+7.14%</span></td>
+        <td class="num">4.4 <span class="unit">B$</span><br><span class="neg">-10%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">22</td>
+        <td class="mvc"><span class="mv new">NEW</span></td>
+        <td class="nm"><span class="code">V</span><br>ビザ</td>
+        <td class="num">$357.25<br><span class="neg">-1.35%</span></td>
+        <td class="num">4.1 <span class="unit">B$</span><br><span class="flat">&#8212;</span></td>
+      </tr>
+      <tr>
+        <td class="rk">23</td>
+        <td class="mvc"><span class="mv pos">&#9650;2</span></td>
+        <td class="nm"><span class="code">ASML</span><br>ASMLホールディング</td>
+        <td class="num">$1,825.07<br><span class="pos">+3.15%</span></td>
+        <td class="num">3.5 <span class="unit">B$</span><br><span class="neg">-27%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">24</td>
+        <td class="mvc"><span class="mv new">NEW</span></td>
+        <td class="nm"><span class="code">BE</span><br>ブルーム・エネルギー</td>
+        <td class="num">$295.05<br><span class="pos">+8.92%</span></td>
+        <td class="num">3.4 <span class="unit">B$</span><br><span class="flat">&#8212;</span></td>
+      </tr>
+      <tr>
+        <td class="rk">25</td>
+        <td class="mvc"><span class="mv new">NEW</span></td>
+        <td class="nm"><span class="code">NFLX</span><br>ネットフリックス</td>
+        <td class="num">$76.02<br><span class="neg">-2.10%</span></td>
+        <td class="num">3.4 <span class="unit">B$</span><br><span class="flat">&#8212;</span></td>
+      </tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note">売買代金の単位は B$（10億ドル）。日付は米国東部時間のセッション日。</p>
+  </section>
+  <section id="jp">
+    <h2>🇯🇵 日本株 売買代金トップ25</h2>
+    <p class="sub">対象日 2026-07-06（月）　｜　前回比: 2026-07-02（木）　｜　記録 11日分（2026-06-16〜2026-07-06）</p>
+    <div class="tablewrap">
+    <table class="rank-table">
+      <thead><tr>
+        <th class="rk">#</th><th>変動</th><th class="left">銘柄</th>
+        <th>株価 / 前日比</th><th>売買代金 / 前回比</th>
+      </tr></thead>
+      <tbody>
+      <tr>
+        <td class="rk">1</td>
+        <td class="mvc"><span class="mv flat">&#8594;</span></td>
+        <td class="nm"><span class="code">285A</span><br>キオクシア</td>
+        <td class="num">81,570円<br><span class="neg">-2.08%</span></td>
+        <td class="num">32,548 <span class="unit">億円</span><br><span class="neg">-5%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">2</td>
+        <td class="mvc"><span class="mv flat">&#8594;</span></td>
+        <td class="nm"><span class="code">6976</span><br>太陽誘電</td>
+        <td class="num">18,340円<br><span class="neg">-10.80%</span></td>
+        <td class="num">3,555 <span class="unit">億円</span><br><span class="neg">-27%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">3</td>
+        <td class="mvc"><span class="mv pos">&#9650;2</span></td>
+        <td class="nm"><span class="code">1570</span><br>日経レバ</td>
+        <td class="num">78,300円<br><span class="neg">-0.48%</span></td>
+        <td class="num">2,511 <span class="unit">億円</span><br><span class="neg">-7%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">4</td>
+        <td class="mvc"><span class="mv pos">&#9650;3</span></td>
+        <td class="nm"><span class="code">6981</span><br>村田製</td>
+        <td class="num">10,215円<br><span class="neg">-7.81%</span></td>
+        <td class="num">2,045 <span class="unit">億円</span><br><span class="neg">-5%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">5</td>
+        <td class="mvc"><span class="mv neg">&#9660;1</span></td>
+        <td class="nm"><span class="code">8035</span><br>東エレク</td>
+        <td class="num">72,370円<br><span class="neg">-1.13%</span></td>
+        <td class="num">1,924 <span class="unit">億円</span><br><span class="neg">-36%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">6</td>
+        <td class="mvc"><span class="mv neg">&#9660;3</span></td>
+        <td class="nm"><span class="code">9984</span><br>ＳＢＧ</td>
+        <td class="num">5,971円<br><span class="neg">-3.21%</span></td>
+        <td class="num">1,878 <span class="unit">億円</span><br><span class="neg">-56%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">7</td>
+        <td class="mvc"><span class="mv neg">&#9660;1</span></td>
+        <td class="nm"><span class="code">6857</span><br>アドテスト</td>
+        <td class="num">29,550円<br><span class="pos">+0.70%</span></td>
+        <td class="num">1,829 <span class="unit">億円</span><br><span class="neg">-25%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">8</td>
+        <td class="mvc"><span class="mv pos">&#9650;1</span></td>
+        <td class="nm"><span class="code">5803</span><br>フジクラ</td>
+        <td class="num">5,363円<br><span class="pos">+0.09%</span></td>
+        <td class="num">1,665 <span class="unit">億円</span><br><span class="neg">-6%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">9</td>
+        <td class="mvc"><span class="mv neg">&#9660;1</span></td>
+        <td class="nm"><span class="code">4062</span><br>イビデン</td>
+        <td class="num">21,385円<br><span class="neg">-8.40%</span></td>
+        <td class="num">1,427 <span class="unit">億円</span><br><span class="neg">-19%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">10</td>
+        <td class="mvc"><span class="mv pos">&#9650;17</span></td>
+        <td class="nm"><span class="code">7011</span><br>三菱重</td>
+        <td class="num">4,102円<br><span class="pos">+8.18%</span></td>
+        <td class="num">1,326 <span class="unit">億円</span><br><span class="pos">+137%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">11</td>
+        <td class="mvc"><span class="mv pos">&#9650;1</span></td>
+        <td class="nm"><span class="code">3436</span><br>ＳＵＭＣＯ</td>
+        <td class="num">5,121円<br><span class="pos">+0.53%</span></td>
+        <td class="num">1,280 <span class="unit">億円</span><br><span class="pos">+24%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">12</td>
+        <td class="mvc"><span class="mv pos">&#9650;13</span></td>
+        <td class="nm"><span class="code">6525</span><br>コクサイエレ</td>
+        <td class="num">11,270円<br><span class="neg">-6.08%</span></td>
+        <td class="num">1,250 <span class="unit">億円</span><br><span class="pos">+119%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">13</td>
+        <td class="mvc"><span class="mv pos">&#9650;1</span></td>
+        <td class="nm"><span class="code">6146</span><br>ディスコ</td>
+        <td class="num">77,970円<br><span class="pos">+1.80%</span></td>
+        <td class="num">1,028 <span class="unit">億円</span><br><span class="pos">+2%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">14</td>
+        <td class="mvc"><span class="mv neg">&#9660;4</span></td>
+        <td class="nm"><span class="code">6920</span><br>レーザーテク</td>
+        <td class="num">47,100円<br><span class="neg">-1.15%</span></td>
+        <td class="num">971 <span class="unit">億円</span><br><span class="neg">-10%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">15</td>
+        <td class="mvc"><span class="mv flat">&#8594;</span></td>
+        <td class="nm"><span class="code">8306</span><br>三菱ＵＦＪ</td>
+        <td class="num">3,367円<br><span class="pos">+1.23%</span></td>
+        <td class="num">748 <span class="unit">億円</span><br><span class="neg">-23%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">16</td>
+        <td class="mvc"><span class="mv pos">&#9650;20</span></td>
+        <td class="nm"><span class="code">4063</span><br>信越化</td>
+        <td class="num">7,396円<br><span class="pos">+6.29%</span></td>
+        <td class="num">740 <span class="unit">億円</span><br><span class="pos">+78%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">17</td>
+        <td class="mvc"><span class="mv neg">&#9660;4</span></td>
+        <td class="nm"><span class="code">5801</span><br>古河電</td>
+        <td class="num">3,894円<br><span class="neg">-2.65%</span></td>
+        <td class="num">697 <span class="unit">億円</span><br><span class="neg">-32%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">18</td>
+        <td class="mvc"><span class="mv neg">&#9660;7</span></td>
+        <td class="nm"><span class="code">5016</span><br>ＪＸ金属</td>
+        <td class="num">4,013円<br><span class="neg">-1.76%</span></td>
+        <td class="num">690 <span class="unit">億円</span><br><span class="neg">-34%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">19</td>
+        <td class="mvc"><span class="mv neg">&#9660;1</span></td>
+        <td class="nm"><span class="code">7203</span><br>トヨタ</td>
+        <td class="num">2,914円<br><span class="pos">+3.02%</span></td>
+        <td class="num">649 <span class="unit">億円</span><br><span class="neg">-5%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">20</td>
+        <td class="mvc"><span class="mv neg">&#9660;3</span></td>
+        <td class="nm"><span class="code">7735</span><br>スクリン</td>
+        <td class="num">17,810円<br><span class="neg">-5.97%</span></td>
+        <td class="num">630 <span class="unit">億円</span><br><span class="neg">-9%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">21</td>
+        <td class="mvc"><span class="mv pos">&#9650;18</span></td>
+        <td class="nm"><span class="code">7013</span><br>ＩＨＩ</td>
+        <td class="num">3,063円<br><span class="pos">+6.74%</span></td>
+        <td class="num">619 <span class="unit">億円</span><br><span class="pos">+75%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">22</td>
+        <td class="mvc"><span class="mv neg">&#9660;2</span></td>
+        <td class="nm"><span class="code">8316</span><br>三井住友ＦＧ</td>
+        <td class="num">6,791円<br><span class="pos">+1.78%</span></td>
+        <td class="num">607 <span class="unit">億円</span><br><span class="neg">-7%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">23</td>
+        <td class="mvc"><span class="mv pos">&#9650;9</span></td>
+        <td class="nm"><span class="code">9983</span><br>ファストリ</td>
+        <td class="num">86,680円<br><span class="pos">+2.58%</span></td>
+        <td class="num">595 <span class="unit">億円</span><br><span class="pos">+30%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">24</td>
+        <td class="mvc"><span class="mv neg">&#9660;2</span></td>
+        <td class="nm"><span class="code">6723</span><br>ルネサス</td>
+        <td class="num">4,666円<br><span class="neg">-3.20%</span></td>
+        <td class="num">482 <span class="unit">億円</span><br><span class="neg">-20%</span></td>
+      </tr>
+      <tr>
+        <td class="rk">25</td>
+        <td class="mvc"><span class="mv neg">&#9660;9</span></td>
+        <td class="nm"><span class="code">6752</span><br>パナＨＤ</td>
+        <td class="num">4,541円<br><span class="pos">+0.42%</span></td>
+        <td class="num">471 <span class="unit">億円</span><br><span class="neg">-35%</span></td>
+      </tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note">売買代金の単位は億円。日付は日本時間のセッション日。</p>
+  </section>
+  <footer>
+    データソース: TradingView スクリーナー（非公式API）。休場日・取得障害時は記録をスキップします。<br>
+    生成: 2026-07-07 01:02 UTC　｜　<a href="https://github.com/fabproducts/rankings">GitHub: fabproducts/rankings</a>
+  </footer>
+</body>
+</html>
