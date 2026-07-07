@@ -4,8 +4,8 @@
 このページの価値は「今日のランキング」ではなく「日次の横並び推移からお祭り開始銘柄を早く見つける」こと。
 各市場について以下を生成する:
   - 本日のシグナル（ページ上部サマリー）: 新規ランクイン / 売買代金急増(+50%超) / 順位急上昇(10位以上)
-  - 最新記録日のトップ25と前回記録日比（順位変動・売買代金変化率、シグナル該当は強調表示）
-  - 順位推移ヒートマップ（直近14記録日 × 最新上位25銘柄、色 = 順位の濃淡）
+  - 統合テーブル: 最新記録日のトップ25（順位・シグナルバッジ・株価/前日比・売買代金/前回比）に、
+    直近14記録日の順位ヒートマップ（緑濃淡）を右ブロックとして連結。銘柄列はsticky固定・軌跡は横スクロール
 
 スマホ閲覧前提のレスポンシブ・日本語UI・静的HTML（外部依存なし）。
 出力は入力CSVに対して決定的（生成時刻等を埋め込まない）。
@@ -171,64 +171,36 @@ def rank_move_html(code, rank, prev_ranks, is_jump):
     return '<span class="mv flat">&#8594;</span>'
 
 
-def heatmap_html(m, a):
-    """順位推移ヒートマップ（直近HEAT_DAYS記録日 × 最新上位TOP_N銘柄）。"""
-    dates = a["dates"][-HEAT_DAYS:]
-    if len(dates) < 2:
-        return ""
-    codes = [r["code"] for r in a["rows"]]
-    name_of = {r["code"]: r["name"] for r in a["rows"]}
-    head = "".join(f'<th class="gd">{d[5:].replace("-", "/")}</th>' for d in dates)
-    trs = []
-    for code in codes:
-        cells = []
-        for d in dates:
-            rec = next((r for r in a["by_date"][d] if r["code"] == code), None)
-            rank = rec["rank"] if rec else None
-            cells.append(f'<td class="{rank_tier(rank)}">{rank if rank else "&#183;"}</td>')
-        code_e = html.escape(code)
-        name_e = html.escape(name_of[code])
-        trs.append(f'      <tr><th class="gnm"><span class="code">{code_e}</span> {name_e}</th>'
-                   + "".join(cells) + "</tr>")
-    body = os.linesep.join(trs)
-    t50_legend = ('<span><i class="t50"></i>26&#8211;50位</span>'
-                  if 'class="t50"' in body else "")
-    legend = ('<span><i class="t5"></i>1&#8211;5位</span>'
-              '<span><i class="t10"></i>6&#8211;10位</span>'
-              '<span><i class="t25"></i>11&#8211;25位</span>'
-              f'{t50_legend}'
-              '<span><i class="t-none"></i>圏外</span>')
-    return f"""    <h3>順位推移ヒートマップ（直近{len(dates)}記録日 &#215; 最新上位{len(codes)}銘柄）</h3>
-    <p class="sub">上位に張り付き続ける銘柄・突然浮上した銘柄が一目で分かります。横スクロールできます。</p>
-    <div class="tablewrap">
-    <table class="heat">
-      <thead><tr><th class="gnm">銘柄</th>{head}</tr></thead>
-      <tbody>
-{body}
-      </tbody>
-    </table>
-    </div>
-    <div class="legend">{legend}</div>"""
-
-
 def section_html(m, a):
+    """統合テーブル: 左=最新日の情報（sticky銘柄列＋株価・代金）、右=直近HEAT_DAYS記録日の順位軌跡。"""
     if not a["dates"]:
         return (f'<section id="{m["key"]}"><h2>{m["flag"]} {m["title"]}</h2>'
                 '<p class="sub">まだ記録がありません。</p></section>')
     dates = a["dates"]
     latest, prev = a["latest"], a["prev"]
+    heat_dates = dates[-HEAT_DAYS:]
+    rank_index = {d: {r["code"]: r["rank"] for r in a["by_date"][d]} for d in heat_dates}
     signal_codes = {s["row"]["code"] for s in a["signals"]}
     jump_codes = {s["row"]["code"] for s in a["signals"]
                   if any(cls == "jump" for cls, _ in s["badges"])}
     surge_codes = {s["row"]["code"] for s in a["signals"]
                    if any(cls == "surge" for cls, _ in s["badges"])}
+    badges_by_code = {s["row"]["code"]: s["badges"] for s in a["signals"]}
 
+    head_dates = "".join(f'<th class="gd">{d[5:].replace("-", "/")}</th>' for d in heat_dates)
     trs = []
     for r in a["rows"]:
         code = html.escape(r["code"])
         name = html.escape(r["name"])
         chg = r["change_pct"]
-        move = rank_move_html(r["code"], r["rank"], a["prev_ranks"], r["code"] in jump_codes)
+        badges = badges_by_code.get(r["code"], [])
+        has_rank_badge = any(cls in ("new", "jump") for cls, _ in badges)
+        badge_parts = []
+        if not has_rank_badge:
+            badge_parts.append(rank_move_html(r["code"], r["rank"], a["prev_ranks"],
+                                              r["code"] in jump_codes))
+        badge_parts += [f'<span class="sb {cls}">{label}</span>' for cls, label in badges]
+        badge_html = "".join(badge_parts)
         prev_val = a["prev_values"].get(r["code"], 0)
         if prev_val > 0:
             vchg = (r["value_traded"] / prev_val - 1) * 100
@@ -236,30 +208,44 @@ def section_html(m, a):
             vchg_html = f'<span class="{vcls}">{vchg:+.0f}%</span>'
         else:
             vchg_html = '<span class="flat">&#8212;</span>'
+        heat_cells = []
+        for d in heat_dates:
+            rank = rank_index[d].get(r["code"])
+            heat_cells.append(f'<td class="hc {rank_tier(rank)}">{rank if rank else "&#183;"}</td>')
         row_cls = ' class="sig"' if r["code"] in signal_codes else ""
         trs.append(f"""      <tr{row_cls}>
-        <td class="rk">{r["rank"]}<br>{move}</td>
-        <td class="nm"><span class="code">{code}</span><br>{name}</td>
-        <td class="num">{m["value_fmt"](r["value_traded"])} <span class="unit">{m["unit"]}</span><br>{vchg_html}</td>
+        <td class="snm"><span class="rkno">{r["rank"]}</span>{badge_html}<span class="nmline"><span class="code">{code}</span> {name}</span></td>
         <td class="num">{m["price_fmt"](r["close"])}<br><span class="{pct_cls(chg)}">{chg:+.2f}%</span></td>
+        <td class="num">{m["value_fmt"](r["value_traded"])} <span class="unit">{m["unit"]}</span><br>{vchg_html}</td>
+        {"".join(heat_cells)}
       </tr>""")
 
+    body = os.linesep.join(trs)
+    t50_legend = ('<span><i class="t50"></i>26&#8211;50位</span>'
+                  if 'class="hc t50"' in body else "")
+    legend = ('<span><i class="t5"></i>1&#8211;5位</span>'
+              '<span><i class="t10"></i>6&#8211;10位</span>'
+              '<span><i class="t25"></i>11&#8211;25位</span>'
+              f'{t50_legend}'
+              '<span><i class="t-none"></i>圏外</span>')
     prev_txt = f"　｜　前回比: {date_ja(prev)}" if prev else ""
     return f"""  <section id="{m["key"]}">
-    <h2>{m["flag"]} {m["title"]} 売買代金トップ{TOP_N}</h2>
-    <p class="sub">対象日 {date_ja(latest)}{prev_txt}　｜　記録 {len(dates)}日分（{dates[0]}〜{latest}）</p>
+    <h2>{m["flag"]} {m["title"]} 売買代金トップ{TOP_N} &#215; 順位推移</h2>
+    <p class="sub">対象日 {date_ja(latest)}{prev_txt}　｜　記録 {len(dates)}日分（{dates[0]}〜{latest}）<br>
+銘柄列は固定・右へスワイプで株価/売買代金と直近{len(heat_dates)}記録日の順位軌跡（右端が最新日）を確認できます。</p>
     <div class="tablewrap">
-    <table class="rank-table">
+    <table class="merged">
       <thead><tr>
-        <th class="rk">#</th><th class="left">銘柄</th>
-        <th>売買代金 / 前回比</th><th>株価 / 前日比</th>
+        <th class="snm">#・銘柄</th>
+        <th>株価 / 前日比</th><th>売買代金 / 前回比</th>
+        {head_dates}
       </tr></thead>
       <tbody>
-{os.linesep.join(trs)}
+{body}
       </tbody>
     </table>
     </div>
-{heatmap_html(m, a)}
+    <div class="legend">{legend}</div>
     <p class="note">{m["note"]}</p>
   </section>"""
 
@@ -298,9 +284,6 @@ def main():
        border-bottom:1px solid #1a202c; color:#cbd5e1; vertical-align:middle;
        font-variant-numeric:tabular-nums; line-height:1.5; }}
   tr:hover td {{ background:#1a2035; }}
-  td.rk {{ color:#64748b; font-weight:700; text-align:center; }}
-  td.nm {{ text-align:left; color:#e2e8f0; font-weight:600; white-space:normal;
-          min-width:110px; font-size:12px; line-height:1.4; }}
   .code {{ font-family:'SF Mono',ui-monospace,monospace; color:#94a3b8; font-size:11px; font-weight:600; }}
   td.num {{ font-size:12px; }}
   .unit {{ color:#64748b; font-size:10px; }}
@@ -330,20 +313,27 @@ def main():
   .sb.new {{ background:#2563eb; color:#fff; }}
   .sb.jump {{ background:#facc15; color:#0f1117; }}
   .sb.surge {{ background:#f97316; color:#fff; }}
-  .heat {{ font-size:11px; width:auto; }}
-  .heat th.gd {{ text-align:center; min-width:34px; padding:5px 4px; font-weight:500; }}
-  .heat th.gnm {{ text-align:left; font-size:11px; color:#cbd5e1; font-weight:600;
-                 max-width:150px; min-width:120px; overflow:hidden; text-overflow:ellipsis;
-                 white-space:nowrap; position:sticky; left:0; background:#0f1117;
-                 border-bottom:1px solid #1a202c; padding:4px 8px 4px 0; }}
-  .heat thead th.gnm {{ border-bottom:2px solid #2d3748; }}
-  .heat td {{ text-align:center; padding:4px 4px; color:#0f1117; font-weight:700;
-             border-bottom:1px solid #0f1117; font-size:10px; }}
-  .heat td.t5 {{ background:#15803d; color:#f0fdf4; }}
-  .heat td.t10 {{ background:#4ade80; }}
-  .heat td.t25 {{ background:#bbf7d0; }}
-  .heat td.t50 {{ background:#374151; color:#9ca3af; font-weight:500; }}
-  .heat td.t-none {{ background:#1a202c; color:#374151; font-weight:400; }}
+  .merged {{ border-collapse:separate; border-spacing:0; width:auto; }}
+  .merged th.snm, .merged td.snm {{ position:sticky; left:0; z-index:1; background:#0f1117;
+      text-align:left; width:150px; min-width:150px; max-width:150px; overflow:hidden;
+      padding:6px 8px 6px 6px; border-right:1px solid #2d3748; }}
+  .merged td.snm {{ line-height:1.6; }}
+  .rkno {{ font-weight:700; color:#f1f5f9; font-size:13px; margin-right:6px; }}
+  .snm .nmline {{ display:block; font-size:11px; font-weight:600; color:#e2e8f0;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }}
+  .merged .mv {{ font-size:10px; padding:1px 5px; }}
+  .merged .sb {{ font-size:9px; padding:1px 4px; margin-right:3px; }}
+  .merged th.gd {{ text-align:center; min-width:34px; padding:5px 4px; font-weight:500; }}
+  .merged td.hc {{ text-align:center; padding:4px 4px; color:#0f1117; font-weight:700;
+      border-bottom:1px solid #0f1117; font-size:10px; min-width:34px; }}
+  .merged td.t5 {{ background:#15803d; color:#f0fdf4; }}
+  .merged td.t10 {{ background:#4ade80; }}
+  .merged td.t25 {{ background:#bbf7d0; }}
+  .merged td.t50 {{ background:#374151; color:#9ca3af; font-weight:500; }}
+  .merged td.t-none {{ background:#1a202c; color:#374151; font-weight:400; }}
+  .merged tr.sig td.snm {{ background:#1d1c17; }}
+  .merged tr:hover td.snm {{ background:#1a2035; }}
+  .merged tr.sig:hover td.snm {{ background:#2b2717; }}
   .legend {{ font-size:11px; color:#64748b; margin-top:8px; display:flex; gap:14px;
             flex-wrap:wrap; align-items:center; }}
   .legend span {{ display:inline-flex; align-items:center; gap:5px; }}
@@ -370,9 +360,9 @@ def main():
     <a href="https://github.com/fabproducts/rankings">GitHub: fabproducts/rankings</a>
   </footer>
   <script>
-    // ヒートマップは初期表示で最新日（右端）が見えるようにスクロールしておく
+    // 統合テーブルは初期表示で軌跡の最新日（右端）が見えるようにスクロールしておく
     document.querySelectorAll(".tablewrap").forEach(function (w) {{
-      if (w.querySelector("table.heat")) {{ w.scrollLeft = w.scrollWidth; }}
+      if (w.querySelector("table.merged")) {{ w.scrollLeft = w.scrollWidth; }}
     }});
   </script>
 </body>
