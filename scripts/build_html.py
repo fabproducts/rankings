@@ -104,11 +104,10 @@ def section_html(m):
         else:
             vchg_html = '<span class="flat">&#8212;</span>'
         trs.append(f"""      <tr>
-        <td class="rk">{r["rank"]}</td>
-        <td class="mvc">{move}</td>
+        <td class="rk">{r["rank"]}<br>{move}</td>
         <td class="nm"><span class="code">{code}</span><br>{name}</td>
-        <td class="num">{m["price_fmt"](r["close"])}<br><span class="{pct_cls(chg)}">{chg:+.2f}%</span></td>
         <td class="num">{m["value_fmt"](r["value_traded"])} <span class="unit">{m["unit"]}</span><br>{vchg_html}</td>
+        <td class="num">{m["price_fmt"](r["close"])}<br><span class="{pct_cls(chg)}">{chg:+.2f}%</span></td>
       </tr>""")
 
     prev_txt = f"　｜　前回比: {date_ja(prev)}" if prev else ""
@@ -118,8 +117,8 @@ def section_html(m):
     <div class="tablewrap">
     <table class="rank-table">
       <thead><tr>
-        <th class="rk">#</th><th>変動</th><th class="left">銘柄</th>
-        <th>株価 / 前日比</th><th>売買代金 / 前回比</th>
+        <th class="rk">#</th><th class="left">銘柄</th>
+        <th>売買代金 / 前回比</th><th>株価 / 前日比</th>
       </tr></thead>
       <tbody>
 {os.linesep.join(trs)}
@@ -157,14 +156,13 @@ def main():
        border-bottom:2px solid #2d3748; white-space:nowrap; }}
   th.left {{ text-align:left; }}
   th.rk {{ text-align:right; width:28px; }}
-  td {{ padding:7px 8px; text-align:right; white-space:nowrap;
+  td {{ padding:7px 6px; text-align:right; white-space:nowrap;
        border-bottom:1px solid #1a202c; color:#cbd5e1; vertical-align:middle;
        font-variant-numeric:tabular-nums; line-height:1.5; }}
   tr:hover td {{ background:#1a2035; }}
-  td.rk {{ color:#64748b; font-weight:700; }}
-  td.mvc {{ text-align:center; }}
+  td.rk {{ color:#64748b; font-weight:700; text-align:center; }}
   td.nm {{ text-align:left; color:#e2e8f0; font-weight:600; white-space:normal;
-          min-width:130px; font-size:12px; line-height:1.4; }}
+          min-width:110px; font-size:12px; line-height:1.4; }}
   td.nm .code {{ font-family:'SF Mono',ui-monospace,monospace; color:#94a3b8; font-size:11px; font-weight:600; }}
   td.num {{ font-size:12px; }}
   .unit {{ color:#64748b; font-size:10px; }}
