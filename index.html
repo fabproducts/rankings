@@ -14,8 +14,9 @@
   nav a { font-size:13px; color:#93c5fd; text-decoration:none; padding:6px 12px;
           background:#1a2035; border-radius:6px; }
   h2 { font-size:16px; color:#f1f5f9; margin:26px 0 4px; }
+  h3 { font-size:14px; color:#e2e8f0; margin:22px 0 4px; }
   .sub { font-size:11px; color:#64748b; margin-bottom:10px; line-height:1.6; }
-  .tablewrap { overflow-x:auto; }
+  .tablewrap { overflow-x:auto; -webkit-overflow-scrolling:touch; }
   table { border-collapse:collapse; font-size:13px; width:100%; }
   th { text-align:right; padding:6px 8px; font-size:11px; color:#475569;
        border-bottom:2px solid #2d3748; white-space:nowrap; }
@@ -28,7 +29,7 @@
   td.rk { color:#64748b; font-weight:700; text-align:center; }
   td.nm { text-align:left; color:#e2e8f0; font-weight:600; white-space:normal;
           min-width:110px; font-size:12px; line-height:1.4; }
-  td.nm .code { font-family:'SF Mono',ui-monospace,monospace; color:#94a3b8; font-size:11px; font-weight:600; }
+  .code { font-family:'SF Mono',ui-monospace,monospace; color:#94a3b8; font-size:11px; font-weight:600; }
   td.num { font-size:12px; }
   .unit { color:#64748b; font-size:10px; }
   .pos { color:#4ade80; font-weight:600; }
@@ -39,6 +40,47 @@
   .mv.neg { background:rgba(248,113,113,0.12); color:#f87171; }
   .mv.new { background:rgba(96,165,250,0.15); color:#60a5fa; }
   .mv.flat { color:#475569; }
+  .mv.jump { background:#facc15; color:#0f1117; }
+  .pos.surge { background:#facc15; color:#0f1117; padding:1px 5px; border-radius:4px; font-weight:700; }
+  tr.sig td { background:rgba(250,204,21,0.06); }
+  tr.sig td:first-child { box-shadow:inset 3px 0 0 #facc15; }
+  tr.sig:hover td { background:rgba(250,204,21,0.12); }
+  .signals { background:#161b2b; border:1px solid #2d3748; border-radius:10px;
+             padding:14px 16px 12px; margin:18px 0 6px; }
+  .signals h2 { margin:0 0 6px; font-size:15px; }
+  .signals ul { list-style:none; }
+  .signals li { font-size:13px; padding:8px 0; border-bottom:1px solid #1f2637; line-height:1.6; }
+  .signals li:last-child { border-bottom:none; }
+  .signals li.none { color:#64748b; font-size:12px; }
+  .signals .detail { font-size:11px; color:#94a3b8; }
+  .sb { display:inline-block; font-size:11px; font-weight:700; padding:2px 7px;
+        border-radius:4px; margin-right:4px; }
+  .sb.new { background:#2563eb; color:#fff; }
+  .sb.jump { background:#facc15; color:#0f1117; }
+  .sb.surge { background:#f97316; color:#fff; }
+  .heat { font-size:11px; width:auto; }
+  .heat th.gd { text-align:center; min-width:34px; padding:5px 4px; font-weight:500; }
+  .heat th.gnm { text-align:left; font-size:11px; color:#cbd5e1; font-weight:600;
+                 max-width:150px; min-width:120px; overflow:hidden; text-overflow:ellipsis;
+                 white-space:nowrap; position:sticky; left:0; background:#0f1117;
+                 border-bottom:1px solid #1a202c; padding:4px 8px 4px 0; }
+  .heat thead th.gnm { border-bottom:2px solid #2d3748; }
+  .heat td { text-align:center; padding:4px 4px; color:#0f1117; font-weight:700;
+             border-bottom:1px solid #0f1117; font-size:10px; }
+  .heat td.t5 { background:#15803d; color:#f0fdf4; }
+  .heat td.t10 { background:#4ade80; }
+  .heat td.t25 { background:#bbf7d0; }
+  .heat td.t50 { background:#374151; color:#9ca3af; font-weight:500; }
+  .heat td.t-none { background:#1a202c; color:#374151; font-weight:400; }
+  .legend { font-size:11px; color:#64748b; margin-top:8px; display:flex; gap:14px;
+            flex-wrap:wrap; align-items:center; }
+  .legend span { display:inline-flex; align-items:center; gap:5px; }
+  .legend i { width:13px; height:13px; border-radius:3px; display:inline-block; }
+  .legend i.t5 { background:#15803d; }
+  .legend i.t10 { background:#4ade80; }
+  .legend i.t25 { background:#bbf7d0; }
+  .legend i.t50 { background:#374151; }
+  .legend i.t-none { background:#1a202c; border:1px solid #2d3748; }
   .note { font-size:11px; color:#475569; margin-top:8px; line-height:1.6; }
   footer { font-size:11px; color:#475569; margin:30px 0 10px; line-height:1.8; }
   footer a { color:#64748b; }
@@ -47,8 +89,23 @@
 <body>
   <h1>日米 株式売買代金ランキング</h1>
   <p class="lead">各市場の売買代金（Value Traded）上位25銘柄を毎営業日に自動記録。
-「変動」は前回記録日からの順位変動、売買代金の下段は前回記録日比の変化率。</p>
+その日のランキングだけでなく、日次の横並び推移から資金流入の初動（お祭り開始銘柄）を検知します。</p>
   <nav><a href="#us">&#127482;&#127480; 米国株</a><a href="#jp">&#127471;&#127477; 日本株</a></nav>
+  <section id="signals" class="signals">
+    <h2>&#128680; 本日のシグナル</h2>
+    <p class="sub">新規ランクイン（前回圏外 &#8594; 上位25入り）・売買代金の急増（前回比+50%超）・順位の急上昇（10位以上ジャンプ）を自動検知。
+お祭りの初動をランキング推移から拾うための欄です。</p>
+    <ul>
+<li>🇺🇸 <span class="sb surge">代金急増</span> <span class="code">SPCX</span> <strong>スペース・エクスプロレーション・テク</strong><br><span class="detail">売買代金 前回比 +211%（9.7 &#8594; 30.2 B$）</span></li>
+<li>🇺🇸 <span class="sb new">新規IN</span> <span class="code">V</span> <strong>ビザ</strong><br><span class="detail">前回圏外 &#8594; 22位</span></li>
+<li>🇺🇸 <span class="sb new">新規IN</span> <span class="code">BE</span> <strong>ブルーム・エネルギー</strong><br><span class="detail">前回圏外 &#8594; 24位</span></li>
+<li>🇺🇸 <span class="sb new">新規IN</span> <span class="code">NFLX</span> <strong>ネットフリックス</strong><br><span class="detail">前回圏外 &#8594; 25位</span></li>
+<li>🇯🇵 <span class="sb jump">&#9650;17</span><span class="sb surge">代金急増</span> <span class="code">7011</span> <strong>三菱重</strong><br><span class="detail">27位 &#8594; 10位　売買代金 前回比 +137%（559 &#8594; 1,326 億円）</span></li>
+<li>🇯🇵 <span class="sb jump">&#9650;13</span><span class="sb surge">代金急増</span> <span class="code">6525</span> <strong>コクサイエレ</strong><br><span class="detail">25位 &#8594; 12位　売買代金 前回比 +119%（570 &#8594; 1,250 億円）</span></li>
+<li>🇯🇵 <span class="sb jump">&#9650;20</span><span class="sb surge">代金急増</span> <span class="code">4063</span> <strong>信越化</strong><br><span class="detail">36位 &#8594; 16位　売買代金 前回比 +78%（415 &#8594; 740 億円）</span></li>
+<li>🇯🇵 <span class="sb jump">&#9650;18</span><span class="sb surge">代金急増</span> <span class="code">7013</span> <strong>ＩＨＩ</strong><br><span class="detail">39位 &#8594; 21位　売買代金 前回比 +75%（354 &#8594; 619 億円）</span></li>
+    </ul>
+  </section>
   <section id="us">
     <h2>🇺🇸 米国株 売買代金トップ25</h2>
     <p class="sub">対象日 2026-07-06（月）　｜　前回比: 2026-07-02（木）　｜　記録 10日分（2026-06-15〜2026-07-06）</p>
@@ -65,10 +122,10 @@
         <td class="num">36.1 <span class="unit">B$</span><br><span class="neg">-41%</span></td>
         <td class="num">$984.75<br><span class="pos">+0.94%</span></td>
       </tr>
-      <tr>
+      <tr class="sig">
         <td class="rk">2<br><span class="mv pos">&#9650;9</span></td>
         <td class="nm"><span class="code">SPCX</span><br>スペース・エクスプロレーション・テク</td>
-        <td class="num">30.2 <span class="unit">B$</span><br><span class="pos">+211%</span></td>
+        <td class="num">30.2 <span class="unit">B$</span><br><span class="pos surge">+211%</span></td>
         <td class="num">$160.42<br><span class="neg">-0.98%</span></td>
       </tr>
       <tr>
@@ -185,7 +242,7 @@
         <td class="num">4.4 <span class="unit">B$</span><br><span class="neg">-10%</span></td>
         <td class="num">$577.46<br><span class="pos">+7.14%</span></td>
       </tr>
-      <tr>
+      <tr class="sig">
         <td class="rk">22<br><span class="mv new">NEW</span></td>
         <td class="nm"><span class="code">V</span><br>ビザ</td>
         <td class="num">4.1 <span class="unit">B$</span><br><span class="flat">&#8212;</span></td>
@@ -197,13 +254,13 @@
         <td class="num">3.5 <span class="unit">B$</span><br><span class="neg">-27%</span></td>
         <td class="num">$1,825.07<br><span class="pos">+3.15%</span></td>
       </tr>
-      <tr>
+      <tr class="sig">
         <td class="rk">24<br><span class="mv new">NEW</span></td>
         <td class="nm"><span class="code">BE</span><br>ブルーム・エネルギー</td>
         <td class="num">3.4 <span class="unit">B$</span><br><span class="flat">&#8212;</span></td>
         <td class="num">$295.05<br><span class="pos">+8.92%</span></td>
       </tr>
-      <tr>
+      <tr class="sig">
         <td class="rk">25<br><span class="mv new">NEW</span></td>
         <td class="nm"><span class="code">NFLX</span><br>ネットフリックス</td>
         <td class="num">3.4 <span class="unit">B$</span><br><span class="flat">&#8212;</span></td>
@@ -212,6 +269,41 @@
       </tbody>
     </table>
     </div>
+    <h3>順位推移ヒートマップ（直近10記録日 &#215; 最新上位25銘柄）</h3>
+    <p class="sub">上位に張り付き続ける銘柄・突然浮上した銘柄が一目で分かります。横スクロールできます。</p>
+    <div class="tablewrap">
+    <table class="heat">
+      <thead><tr><th class="gnm">銘柄</th><th class="gd">06/15</th><th class="gd">06/17</th><th class="gd">06/18</th><th class="gd">06/19</th><th class="gd">06/22</th><th class="gd">06/24</th><th class="gd">06/25</th><th class="gd">06/26</th><th class="gd">07/02</th><th class="gd">07/06</th></tr></thead>
+      <tbody>
+      <tr><th class="gnm"><span class="code">MU</span> マイクロン・テクノロジー</th><td class="t5">1</td><td class="t5">1</td><td class="t5">2</td><td class="t5">2</td><td class="t5">1</td><td class="t5">1</td><td class="t5">1</td><td class="t5">1</td><td class="t5">1</td><td class="t5">1</td></tr>
+      <tr><th class="gnm"><span class="code">SPCX</span> スペース・エクスプロレーション・テク</th><td class="t5">2</td><td class="t5">2</td><td class="t5">4</td><td class="t5">4</td><td class="t5">2</td><td class="t25">11</td><td class="t25">13</td><td class="t25">11</td><td class="t25">11</td><td class="t5">2</td></tr>
+      <tr><th class="gnm"><span class="code">TSLA</span> テスラ</th><td class="t5">5</td><td class="t5">5</td><td class="t10">9</td><td class="t10">9</td><td class="t5">5</td><td class="t10">8</td><td class="t10">10</td><td class="t10">10</td><td class="t5">3</td><td class="t5">3</td></tr>
+      <tr><th class="gnm"><span class="code">NVDA</span> エヌビディア</th><td class="t5">3</td><td class="t5">3</td><td class="t5">3</td><td class="t5">3</td><td class="t5">3</td><td class="t5">2</td><td class="t5">4</td><td class="t10">7</td><td class="t5">4</td><td class="t5">4</td></tr>
+      <tr><th class="gnm"><span class="code">AAPL</span> アップル</th><td class="t10">9</td><td class="t25">11</td><td class="t10">7</td><td class="t10">7</td><td class="t25">12</td><td class="t10">6</td><td class="t5">3</td><td class="t5">2</td><td class="t5">5</td><td class="t5">5</td></tr>
+      <tr><th class="gnm"><span class="code">AMD</span> アドバンスト・マイクロ・デバイセズ</th><td class="t10">6</td><td class="t10">9</td><td class="t10">8</td><td class="t10">8</td><td class="t25">11</td><td class="t10">10</td><td class="t10">9</td><td class="t10">9</td><td class="t10">8</td><td class="t10">6</td></tr>
+      <tr><th class="gnm"><span class="code">SNDK</span> サンディスク</th><td class="t5">4</td><td class="t5">4</td><td class="t10">6</td><td class="t10">6</td><td class="t5">4</td><td class="t5">3</td><td class="t5">2</td><td class="t10">6</td><td class="t5">2</td><td class="t10">7</td></tr>
+      <tr><th class="gnm"><span class="code">MSFT</span> マイクロソフト</th><td class="t10">10</td><td class="t10">6</td><td class="t10">10</td><td class="t10">10</td><td class="t10">8</td><td class="t5">4</td><td class="t5">5</td><td class="t5">3</td><td class="t10">6</td><td class="t10">8</td></tr>
+      <tr><th class="gnm"><span class="code">INTC</span> インテル</th><td class="t10">7</td><td class="t10">10</td><td class="t5">5</td><td class="t5">5</td><td class="t10">7</td><td class="t10">9</td><td class="t10">7</td><td class="t25">17</td><td class="t10">7</td><td class="t10">9</td></tr>
+      <tr><th class="gnm"><span class="code">META</span> メタ・プラットフォームズ</th><td class="t25">12</td><td class="t25">12</td><td class="t25">14</td><td class="t25">13</td><td class="t25">16</td><td class="t25">15</td><td class="t25">14</td><td class="t25">20</td><td class="t10">9</td><td class="t10">10</td></tr>
+      <tr><th class="gnm"><span class="code">GOOGL</span> アルファベット</th><td class="t25">13</td><td class="t25">15</td><td class="t25">13</td><td class="t25">14</td><td class="t10">6</td><td class="t10">7</td><td class="t10">8</td><td class="t5">5</td><td class="t25">14</td><td class="t25">11</td></tr>
+      <tr><th class="gnm"><span class="code">AVGO</span> ブロードコム</th><td class="t25">11</td><td class="t10">7</td><td class="t25">11</td><td class="t25">11</td><td class="t25">14</td><td class="t25">12</td><td class="t25">16</td><td class="t25">18</td><td class="t25">12</td><td class="t25">12</td></tr>
+      <tr><th class="gnm"><span class="code">AMZN</span> アマゾン・ドット・コム</th><td class="t25">14</td><td class="t25">13</td><td class="t25">12</td><td class="t25">12</td><td class="t10">9</td><td class="t5">5</td><td class="t10">6</td><td class="t5">4</td><td class="t10">10</td><td class="t25">13</td></tr>
+      <tr><th class="gnm"><span class="code">GOOG</span> アルファベット</th><td class="t25">16</td><td class="t25">19</td><td class="t25">19</td><td class="t25">19</td><td class="t25">13</td><td class="t25">14</td><td class="t25">15</td><td class="t10">8</td><td class="t25">21</td><td class="t25">14</td></tr>
+      <tr><th class="gnm"><span class="code">MRVL</span> マーベル・テクノロジー</th><td class="t10">8</td><td class="t10">8</td><td class="t5">1</td><td class="t5">1</td><td class="t10">10</td><td class="t25">13</td><td class="t25">11</td><td class="t25">19</td><td class="t25">13</td><td class="t25">15</td></tr>
+      <tr><th class="gnm"><span class="code">TSM</span> 台湾積体電路製造股分有限公司</th><td class="t25">23</td><td class="t25">22</td><td class="t25">18</td><td class="t25">18</td><td class="t25">21</td><td class="t25">21</td><td class="t25">21</td><td class="t-none">&#183;</td><td class="t25">16</td><td class="t25">16</td></tr>
+      <tr><th class="gnm"><span class="code">AMAT</span> アプライド・マテリアルズ</th><td class="t25">15</td><td class="t25">18</td><td class="t25">22</td><td class="t25">22</td><td class="t25">20</td><td class="t25">17</td><td class="t25">12</td><td class="t25">12</td><td class="t25">15</td><td class="t25">17</td></tr>
+      <tr><th class="gnm"><span class="code">ORCL</span> オラクル</th><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t25">18</td><td class="t25">24</td><td class="t-none">&#183;</td><td class="t25">19</td><td class="t25">18</td></tr>
+      <tr><th class="gnm"><span class="code">PLTR</span> パランティア・テクノロジーズ</th><td class="t25">20</td><td class="t25">24</td><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t25">19</td><td class="t25">19</td><td class="t25">20</td><td class="t-none">&#183;</td><td class="t25">17</td><td class="t25">19</td></tr>
+      <tr><th class="gnm"><span class="code">LRCX</span> ラム・リサーチ</th><td class="t25">21</td><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t25">25</td><td class="t25">24</td><td class="t25">22</td><td class="t25">19</td><td class="t-none">&#183;</td><td class="t25">18</td><td class="t25">20</td></tr>
+      <tr><th class="gnm"><span class="code">WDC</span> ウエスタン・デジタル</th><td class="t25">17</td><td class="t25">14</td><td class="t25">16</td><td class="t25">16</td><td class="t25">15</td><td class="t25">16</td><td class="t25">17</td><td class="t25">14</td><td class="t25">24</td><td class="t25">21</td></tr>
+      <tr><th class="gnm"><span class="code">V</span> ビザ</th><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t25">25</td><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t25">22</td></tr>
+      <tr><th class="gnm"><span class="code">ASML</span> ASMLホールディング</th><td class="t25">25</td><td class="t25">23</td><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t25">25</td><td class="t25">23</td></tr>
+      <tr><th class="gnm"><span class="code">BE</span> ブルーム・エネルギー</th><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t25">13</td><td class="t-none">&#183;</td><td class="t25">24</td></tr>
+      <tr><th class="gnm"><span class="code">NFLX</span> ネットフリックス</th><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t25">22</td><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t25">25</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="legend"><span><i class="t5"></i>1&#8211;5位</span><span><i class="t10"></i>6&#8211;10位</span><span><i class="t25"></i>11&#8211;25位</span><span><i class="t-none"></i>圏外</span></div>
     <p class="note">売買代金の単位は B$（10億ドル）。日付は米国東部時間のセッション日。</p>
   </section>
   <section id="jp">
@@ -278,10 +370,10 @@
         <td class="num">1,427 <span class="unit">億円</span><br><span class="neg">-19%</span></td>
         <td class="num">21,385円<br><span class="neg">-8.40%</span></td>
       </tr>
-      <tr>
-        <td class="rk">10<br><span class="mv pos">&#9650;17</span></td>
+      <tr class="sig">
+        <td class="rk">10<br><span class="mv pos jump">&#9650;17</span></td>
         <td class="nm"><span class="code">7011</span><br>三菱重</td>
-        <td class="num">1,326 <span class="unit">億円</span><br><span class="pos">+137%</span></td>
+        <td class="num">1,326 <span class="unit">億円</span><br><span class="pos surge">+137%</span></td>
         <td class="num">4,102円<br><span class="pos">+8.18%</span></td>
       </tr>
       <tr>
@@ -290,10 +382,10 @@
         <td class="num">1,280 <span class="unit">億円</span><br><span class="pos">+24%</span></td>
         <td class="num">5,121円<br><span class="pos">+0.53%</span></td>
       </tr>
-      <tr>
-        <td class="rk">12<br><span class="mv pos">&#9650;13</span></td>
+      <tr class="sig">
+        <td class="rk">12<br><span class="mv pos jump">&#9650;13</span></td>
         <td class="nm"><span class="code">6525</span><br>コクサイエレ</td>
-        <td class="num">1,250 <span class="unit">億円</span><br><span class="pos">+119%</span></td>
+        <td class="num">1,250 <span class="unit">億円</span><br><span class="pos surge">+119%</span></td>
         <td class="num">11,270円<br><span class="neg">-6.08%</span></td>
       </tr>
       <tr>
@@ -314,10 +406,10 @@
         <td class="num">748 <span class="unit">億円</span><br><span class="neg">-23%</span></td>
         <td class="num">3,367円<br><span class="pos">+1.23%</span></td>
       </tr>
-      <tr>
-        <td class="rk">16<br><span class="mv pos">&#9650;20</span></td>
+      <tr class="sig">
+        <td class="rk">16<br><span class="mv pos jump">&#9650;20</span></td>
         <td class="nm"><span class="code">4063</span><br>信越化</td>
-        <td class="num">740 <span class="unit">億円</span><br><span class="pos">+78%</span></td>
+        <td class="num">740 <span class="unit">億円</span><br><span class="pos surge">+78%</span></td>
         <td class="num">7,396円<br><span class="pos">+6.29%</span></td>
       </tr>
       <tr>
@@ -344,10 +436,10 @@
         <td class="num">630 <span class="unit">億円</span><br><span class="neg">-9%</span></td>
         <td class="num">17,810円<br><span class="neg">-5.97%</span></td>
       </tr>
-      <tr>
-        <td class="rk">21<br><span class="mv pos">&#9650;18</span></td>
+      <tr class="sig">
+        <td class="rk">21<br><span class="mv pos jump">&#9650;18</span></td>
         <td class="nm"><span class="code">7013</span><br>ＩＨＩ</td>
-        <td class="num">619 <span class="unit">億円</span><br><span class="pos">+75%</span></td>
+        <td class="num">619 <span class="unit">億円</span><br><span class="pos surge">+75%</span></td>
         <td class="num">3,063円<br><span class="pos">+6.74%</span></td>
       </tr>
       <tr>
@@ -377,11 +469,52 @@
       </tbody>
     </table>
     </div>
+    <h3>順位推移ヒートマップ（直近11記録日 &#215; 最新上位25銘柄）</h3>
+    <p class="sub">上位に張り付き続ける銘柄・突然浮上した銘柄が一目で分かります。横スクロールできます。</p>
+    <div class="tablewrap">
+    <table class="heat">
+      <thead><tr><th class="gnm">銘柄</th><th class="gd">06/16</th><th class="gd">06/17</th><th class="gd">06/18</th><th class="gd">06/19</th><th class="gd">06/22</th><th class="gd">06/23</th><th class="gd">06/24</th><th class="gd">06/25</th><th class="gd">06/26</th><th class="gd">07/02</th><th class="gd">07/06</th></tr></thead>
+      <tbody>
+      <tr><th class="gnm"><span class="code">285A</span> キオクシア</th><td class="t5">1</td><td class="t5">1</td><td class="t5">1</td><td class="t5">1</td><td class="t5">1</td><td class="t5">1</td><td class="t5">1</td><td class="t5">1</td><td class="t5">1</td><td class="t5">1</td><td class="t5">1</td></tr>
+      <tr><th class="gnm"><span class="code">6976</span> 太陽誘電</th><td class="t5">2</td><td class="t5">2</td><td class="t5">2</td><td class="t5">4</td><td class="t5">2</td><td class="t5">3</td><td class="t5">4</td><td class="t10">6</td><td class="t10">6</td><td class="t5">2</td><td class="t5">2</td></tr>
+      <tr><th class="gnm"><span class="code">1570</span> 日経レバ</th><td class="t10">8</td><td class="t10">7</td><td class="t10">7</td><td class="t10">6</td><td class="t5">3</td><td class="t5">4</td><td class="t5">3</td><td class="t5">4</td><td class="t5">4</td><td class="t5">5</td><td class="t5">3</td></tr>
+      <tr><th class="gnm"><span class="code">6981</span> 村田製</th><td class="t5">4</td><td class="t5">4</td><td class="t5">4</td><td class="t5">3</td><td class="t5">5</td><td class="t10">9</td><td class="t10">8</td><td class="t10">8</td><td class="t10">9</td><td class="t10">7</td><td class="t5">4</td></tr>
+      <tr><th class="gnm"><span class="code">8035</span> 東エレク</th><td class="t10">6</td><td class="t10">6</td><td class="t10">6</td><td class="t5">5</td><td class="t10">9</td><td class="t10">7</td><td class="t5">5</td><td class="t5">5</td><td class="t10">7</td><td class="t5">4</td><td class="t5">5</td></tr>
+      <tr><th class="gnm"><span class="code">9984</span> ＳＢＧ</th><td class="t5">3</td><td class="t5">5</td><td class="t5">3</td><td class="t5">2</td><td class="t10">7</td><td class="t10">6</td><td class="t10">6</td><td class="t5">2</td><td class="t5">2</td><td class="t5">3</td><td class="t10">6</td></tr>
+      <tr><th class="gnm"><span class="code">6857</span> アドテスト</th><td class="t5">5</td><td class="t10">8</td><td class="t10">9</td><td class="t10">7</td><td class="t25">11</td><td class="t10">10</td><td class="t10">9</td><td class="t5">3</td><td class="t5">5</td><td class="t10">6</td><td class="t10">7</td></tr>
+      <tr><th class="gnm"><span class="code">5803</span> フジクラ</th><td class="t10">7</td><td class="t25">12</td><td class="t10">10</td><td class="t-none">&#183;</td><td class="t-none">&#183;</td><td class="t5">2</td><td class="t5">2</td><td class="t10">7</td><td class="t5">3</td><td class="t10">9</td><td class="t10">8</td></tr>
+      <tr><th class="gnm"><span class="code">4062</span> イビデン</th><td class="t10">9</td><td class="t10">9</td><td class="t10">8</td><td class="t10">9</td><td class="t10">8</td><td class="t25">11</td><td class="t10">7</td><td class="t10">9</td><td class="t10">8</td><td class="t10">8</td><td class="t10">9</td></tr>
+      <tr><th class="gnm"><span class="code">7011</span> 三菱重</th><td class="t25">17</td><td class="t25">16</td><td class="t25">15</td><td class="t25">20</td><td class="t50">26</td><td class="t25">22</td><td class="t50">30</td><td class="t25">21</td><td class="t50">28</td><td class="t50">27</td><td class="t10">10</td></tr>
+      <tr><th class="gnm"><span class="code">3436</span> ＳＵＭＣＯ</th><td class="t50">28</td><td class="t50">34</td><td class="t50">30</td><td class="t50">43</td><td class="t50">43</td><td class="t50">26</td><td class="t50">32</td><td class="t50">39</td><td class="t50">30</td><td class="t25">12</td><td class="t25">11</td></tr>
+      <tr><th class="gnm"><span class="code">6525</span> コクサイエレ</th><td class="t25">18</td><td class="t25">24</td><td class="t25">21</td><td class="t50">28</td><td class="t50">36</td><td class="t25">25</td><td class="t25">19</td><td class="t25">18</td><td class="t25">20</td><td class="t25">25</td><td class="t25">12</td></tr>
+      <tr><th class="gnm"><span class="code">6146</span> ディスコ</th><td class="t25">11</td><td class="t25">11</td><td class="t25">11</td><td class="t25">11</td><td class="t25">12</td><td class="t25">13</td><td class="t25">14</td><td class="t25">13</td><td class="t25">14</td><td class="t25">14</td><td class="t25">13</td></tr>
+      <tr><th class="gnm"><span class="code">6920</span> レーザーテク</th><td class="t25">12</td><td class="t5">3</td><td class="t5">5</td><td class="t10">8</td><td class="t10">10</td><td class="t25">12</td><td class="t25">11</td><td class="t25">11</td><td class="t25">12</td><td class="t10">10</td><td class="t25">14</td></tr>
+      <tr><th class="gnm"><span class="code">8306</span> 三菱ＵＦＪ</th><td class="t25">15</td><td class="t25">13</td><td class="t25">12</td><td class="t25">13</td><td class="t25">14</td><td class="t25">18</td><td class="t25">18</td><td class="t25">16</td><td class="t25">18</td><td class="t25">15</td><td class="t25">15</td></tr>
+      <tr><th class="gnm"><span class="code">4063</span> 信越化</th><td class="t50">38</td><td class="t50">44</td><td class="t50">39</td><td class="t50">32</td><td class="t50">28</td><td class="t50">28</td><td class="t50">37</td><td class="t50">41</td><td class="t50">37</td><td class="t50">36</td><td class="t25">16</td></tr>
+      <tr><th class="gnm"><span class="code">5801</span> 古河電</th><td class="t10">10</td><td class="t25">14</td><td class="t25">14</td><td class="t25">24</td><td class="t5">4</td><td class="t5">5</td><td class="t10">10</td><td class="t25">12</td><td class="t25">13</td><td class="t25">13</td><td class="t25">17</td></tr>
+      <tr><th class="gnm"><span class="code">5016</span> ＪＸ金属</th><td class="t25">13</td><td class="t10">10</td><td class="t25">13</td><td class="t10">10</td><td class="t10">6</td><td class="t10">8</td><td class="t25">12</td><td class="t10">10</td><td class="t10">10</td><td class="t25">11</td><td class="t25">18</td></tr>
+      <tr><th class="gnm"><span class="code">7203</span> トヨタ</th><td class="t50">30</td><td class="t25">19</td><td class="t25">19</td><td class="t25">23</td><td class="t25">22</td><td class="t50">29</td><td class="t50">26</td><td class="t50">27</td><td class="t25">21</td><td class="t25">18</td><td class="t25">19</td></tr>
+      <tr><th class="gnm"><span class="code">7735</span> スクリン</th><td class="t50">33</td><td class="t50">33</td><td class="t25">20</td><td class="t50">30</td><td class="t50">32</td><td class="t50">33</td><td class="t50">33</td><td class="t25">23</td><td class="t25">25</td><td class="t25">17</td><td class="t25">20</td></tr>
+      <tr><th class="gnm"><span class="code">7013</span> ＩＨＩ</th><td class="t50">27</td><td class="t25">22</td><td class="t50">26</td><td class="t50">40</td><td class="t50">47</td><td class="t50">38</td><td class="t50">38</td><td class="t50">43</td><td class="t50">48</td><td class="t50">39</td><td class="t25">21</td></tr>
+      <tr><th class="gnm"><span class="code">8316</span> 三井住友ＦＧ</th><td class="t25">19</td><td class="t25">18</td><td class="t25">17</td><td class="t25">14</td><td class="t25">16</td><td class="t25">21</td><td class="t25">23</td><td class="t25">24</td><td class="t50">29</td><td class="t25">20</td><td class="t25">22</td></tr>
+      <tr><th class="gnm"><span class="code">9983</span> ファストリ</th><td class="t25">24</td><td class="t50">27</td><td class="t50">28</td><td class="t25">16</td><td class="t50">30</td><td class="t25">19</td><td class="t25">24</td><td class="t25">20</td><td class="t25">24</td><td class="t50">32</td><td class="t25">23</td></tr>
+      <tr><th class="gnm"><span class="code">6723</span> ルネサス</th><td class="t50">26</td><td class="t50">26</td><td class="t25">25</td><td class="t25">18</td><td class="t25">17</td><td class="t25">16</td><td class="t25">20</td><td class="t25">14</td><td class="t25">11</td><td class="t25">22</td><td class="t25">24</td></tr>
+      <tr><th class="gnm"><span class="code">6752</span> パナＨＤ</th><td class="t50">34</td><td class="t50">29</td><td class="t50">31</td><td class="t50">26</td><td class="t25">21</td><td class="t50">34</td><td class="t25">16</td><td class="t25">19</td><td class="t50">26</td><td class="t25">16</td><td class="t25">25</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="legend"><span><i class="t5"></i>1&#8211;5位</span><span><i class="t10"></i>6&#8211;10位</span><span><i class="t25"></i>11&#8211;25位</span><span><i class="t50"></i>26&#8211;50位</span><span><i class="t-none"></i>圏外</span></div>
     <p class="note">売買代金の単位は億円。日付は日本時間のセッション日。</p>
   </section>
   <footer>
     データソース: TradingView スクリーナー（非公式API）。休場日・取得障害時は記録をスキップします。<br>
     <a href="https://github.com/fabproducts/rankings">GitHub: fabproducts/rankings</a>
   </footer>
+  <script>
+    // ヒートマップは初期表示で最新日（右端）が見えるようにスクロールしておく
+    document.querySelectorAll(".tablewrap").forEach(function (w) {
+      if (w.querySelector("table.heat")) { w.scrollLeft = w.scrollWidth; }
+    });
+  </script>
 </body>
 </html>
