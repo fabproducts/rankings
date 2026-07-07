@@ -131,7 +131,8 @@ def section_html(m):
 
 
 def main():
-    generated = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    # 注意: 出力は入力CSVに対して決定的にする（生成時刻等を埋め込まない）。
+    # データ不変ならHTMLも不変となり、workflowの「変更なしなら commit しない」ガードが機能する。
     sections = os.linesep.join(section_html(m) for m in MARKETS)
     page = f"""<!DOCTYPE html>
 <html lang="ja">
@@ -188,7 +189,7 @@ def main():
 {sections}
   <footer>
     データソース: TradingView スクリーナー（非公式API）。休場日・取得障害時は記録をスキップします。<br>
-    生成: {generated}　｜　<a href="https://github.com/fabproducts/rankings">GitHub: fabproducts/rankings</a>
+    <a href="https://github.com/fabproducts/rankings">GitHub: fabproducts/rankings</a>
   </footer>
 </body>
 </html>
