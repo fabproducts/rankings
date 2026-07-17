@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""日米の株式売買代金ランキング上位25件を取得し、CSVへ日次追記する。
+"""日米の株式売買代金ランキング上位50件を取得し、CSVへ日次追記する。
 
 データソース: TradingView スクリーナーAPI（POST、売買代金 Value.Traded 降順）
 usage: python3 scripts/record.py us|jp
@@ -21,8 +21,8 @@ from zoneinfo import ZoneInfo
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 
-TOP_N = 25
-MIN_ROWS = 20  # これ未満しか取れなければ取得障害とみなす
+TOP_N = 50  # 2026-07-17 25→50へ拡張（26-50位ゾーンに現れる初動シグナルを拾うため）
+MIN_ROWS = 40  # これ未満しか取れなければ取得障害とみなす
 
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36")

@@ -18,7 +18,7 @@ import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-TOP_N = 25
+TOP_N = 50  # 2026-07-17 25→50へ拡張（record.py と同期。26-50位の初動シグナルを表示に含める）
 HEAT_DAYS = 14          # ヒートマップに出す直近記録日数
 SURGE_PCT = 50.0        # 売買代金急増と判定する前回比(%)の閾値
 JUMP_RANKS = 10         # 順位急上昇と判定するジャンプ幅(順位)の閾値
