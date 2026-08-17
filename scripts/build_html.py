@@ -16,6 +16,8 @@ import datetime
 import html
 import os
 
+from names_ja import JP_NAMES, jp_name
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 TOP_N = 50  # 2026-07-17 25→50へ拡張（record.py と同期。26-50位の初動シグナルを表示に含める）
@@ -32,6 +34,9 @@ MARKETS = [
         "unit": "B$",
         "value_fmt": lambda v: f"{v / 1e9:,.1f}",
         "price_fmt": lambda p: f"${p:,.2f}",
+        # 米国株はティッカーで判別できるので、ティッカーを主・英語社名を従にする
+        "name_bits": lambda r: (r["code"], r["name"]),
+        "primary_mono": True,
         "note": "売買代金の単位は B$（10億ドル）。日付は米国東部時間のセッション日。",
     },
     {
@@ -42,6 +47,9 @@ MARKETS = [
         "unit": "億円",
         "value_fmt": lambda v: f"{v / 1e8:,.0f}",
         "price_fmt": lambda p: f"{p:,.0f}円" if p == int(p) else f"{p:,.1f}円",
+        # 日本株は4桁コードでは判別しにくいので、日本語社名を主・コードを従にする
+        "name_bits": lambda r: (jp_name(r["code"], r["name"]), r["code"]),
+        "primary_mono": False,
         "note": "売買代金の単位は億円。日付は日本時間のセッション日。",
     },
 ]
@@ -72,6 +80,18 @@ def date_ja(iso):
 
 def pct_cls(v):
     return "pos" if v > 0 else ("neg" if v < 0 else "flat")
+
+
+def name_bits(m, r):
+    """銘柄の主表示・従表示をHTMLエスケープ済みで返す。
+
+    米国株は (ティッカー, 英語社名)、日本株は (日本語社名, 証券コード)。
+    主表示に等幅フォントを当てるかは market の primary_mono で切り替える。
+    """
+    primary, secondary = m["name_bits"](r)
+    pcls = "prim mono" if m["primary_mono"] else "prim"
+    scls = "sec" if m["primary_mono"] else "sec mono"
+    return html.escape(str(primary)), html.escape(str(secondary)), pcls, scls
 
 
 def rank_tier(rank):
@@ -142,12 +162,12 @@ def signals_block_html(results):
         for s in a["signals"]:
             r = s["row"]
             badges = "".join(f'<span class="sb {cls}">{label}</span>' for cls, label in s["badges"])
-            code = html.escape(r["code"])
-            name = html.escape(r["name"])
+            primary, secondary, pcls, scls = name_bits(m, r)
             detail = "　".join(s["details"])
             lines.append(
-                f'<li>{m["flag"]} {badges} <span class="code">{code}</span> '
-                f'<strong>{name}</strong><br><span class="detail">{detail}</span></li>')
+                f'<li>{m["flag"]} {badges} <strong class="{pcls}">{primary}</strong> '
+                f'<span class="{scls}">{secondary}</span>'
+                f'<br><span class="detail">{detail}</span></li>')
     body = os.linesep.join(lines) if lines else '<li class="none">記録がありません</li>'
     return f"""  <section id="signals" class="signals">
     <h2>&#128680; 本日のシグナル</h2>
@@ -190,8 +210,7 @@ def section_html(m, a):
     head_dates = "".join(f'<th class="gd">{d[5:].replace("-", "/")}</th>' for d in heat_dates)
     trs = []
     for r in a["rows"]:
-        code = html.escape(r["code"])
-        name = html.escape(r["name"])
+        primary, secondary, pcls, scls = name_bits(m, r)
         chg = r["change_pct"]
         badges = badges_by_code.get(r["code"], [])
         has_rank_badge = any(cls in ("new", "jump") for cls, _ in badges)
@@ -214,7 +233,7 @@ def section_html(m, a):
             heat_cells.append(f'<td class="hc {rank_tier(rank)}">{rank if rank else "&#183;"}</td>')
         row_cls = ' class="sig"' if r["code"] in signal_codes else ""
         trs.append(f"""      <tr{row_cls}>
-        <td class="snm"><span class="rkno">{r["rank"]}</span>{badge_html}<span class="nmline"><span class="code">{code}</span> {name}</span></td>
+        <td class="snm"><span class="rkno">{r["rank"]}</span>{badge_html}<span class="nmline {pcls}">{primary}</span><span class="subline {scls}">{secondary}</span></td>
         <td class="num">{m["price_fmt"](r["close"])}<br><span class="{pct_cls(chg)}">{chg:+.2f}%</span></td>
         <td class="num">{m["value_fmt"](r["value_traded"])} <span class="unit">{m["unit"]}</span><br>{vchg_html}</td>
         {"".join(heat_cells)}
@@ -250,10 +269,29 @@ def section_html(m, a):
   </section>"""
 
 
+def report_unmapped_jp(results):
+    """日本語名が未登録の日本株コードを標準出力に出す（英語社名のまま表示される）。
+
+    新規に上位入りした銘柄はマップに無いので、ここで気づいて names_ja.py へ追記する。
+    生成そのものは止めない（表示は英語社名でフォールバックする）。
+    """
+    for m, a in results:
+        if m["key"] != "jp":
+            continue
+        unmapped = sorted({r["code"] for r in a["rows"] if r["code"] not in JP_NAMES})
+        if unmapped:
+            print(f"注意: 日本語名が未登録のコード {len(unmapped)}件 "
+                  f"（英語社名のまま表示。scripts/names_ja.py に追記してください）")
+            for code in unmapped:
+                name = next(r["name"] for r in a["rows"] if r["code"] == code)
+                print(f"    {code}  {name}")
+
+
 def main():
     # 注意: 出力は入力CSVに対して決定的にする（生成時刻等を埋め込まない）。
     # データ不変ならHTMLも不変となり、workflowの「変更なしなら commit しない」ガードが機能する。
     results = [(m, analyze(m)) for m in MARKETS]
+    report_unmapped_jp(results)
     signals = signals_block_html(results)
     sections = os.linesep.join(section_html(m, a) for m, a in results)
     page = f"""<!DOCTYPE html>
@@ -284,7 +322,7 @@ def main():
        border-bottom:1px solid #1a202c; color:#cbd5e1; vertical-align:middle;
        font-variant-numeric:tabular-nums; line-height:1.5; }}
   tr:hover td {{ background:#1a2035; }}
-  .code {{ font-family:'SF Mono',ui-monospace,monospace; color:#94a3b8; font-size:11px; font-weight:600; }}
+  .mono {{ font-family:'SF Mono',ui-monospace,SFMono-Regular,Menlo,monospace; }}
   td.num {{ font-size:12px; }}
   .unit {{ color:#64748b; font-size:10px; }}
   .pos {{ color:#4ade80; font-weight:600; }}
@@ -308,6 +346,8 @@ def main():
   .signals li:last-child {{ border-bottom:none; }}
   .signals li.none {{ color:#64748b; font-size:12px; }}
   .signals .detail {{ font-size:11px; color:#94a3b8; }}
+  .signals .prim {{ font-size:13px; color:#f1f5f9; }}
+  .signals .sec {{ font-size:11px; font-weight:500; color:#94a3b8; }}
   .sb {{ display:inline-block; font-size:11px; font-weight:700; padding:2px 7px;
         border-radius:4px; margin-right:4px; }}
   .sb.new {{ background:#2563eb; color:#fff; }}
@@ -319,7 +359,9 @@ def main():
       padding:6px 8px 6px 6px; border-right:1px solid #2d3748; }}
   .merged td.snm {{ line-height:1.6; }}
   .rkno {{ font-weight:700; color:#f1f5f9; font-size:13px; margin-right:6px; }}
-  .snm .nmline {{ display:block; font-size:11px; font-weight:600; color:#e2e8f0;
+  .snm .nmline {{ display:block; font-size:12px; font-weight:700; color:#f1f5f9;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }}
+  .snm .subline {{ display:block; font-size:10px; font-weight:500; color:#64748b;
       white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }}
   .merged .mv {{ font-size:10px; padding:1px 5px; }}
   .merged .sb {{ font-size:9px; padding:1px 4px; margin-right:3px; }}

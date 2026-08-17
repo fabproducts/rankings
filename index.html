@@ -26,7 +26,7 @@
        border-bottom:1px solid #1a202c; color:#cbd5e1; vertical-align:middle;
        font-variant-numeric:tabular-nums; line-height:1.5; }
   tr:hover td { background:#1a2035; }
-  .code { font-family:'SF Mono',ui-monospace,monospace; color:#94a3b8; font-size:11px; font-weight:600; }
+  .mono { font-family:'SF Mono',ui-monospace,SFMono-Regular,Menlo,monospace; }
   td.num { font-size:12px; }
   .unit { color:#64748b; font-size:10px; }
   .pos { color:#4ade80; font-weight:600; }
@@ -50,6 +50,8 @@
   .signals li:last-child { border-bottom:none; }
   .signals li.none { color:#64748b; font-size:12px; }
   .signals .detail { font-size:11px; color:#94a3b8; }
+  .signals .prim { font-size:13px; color:#f1f5f9; }
+  .signals .sec { font-size:11px; font-weight:500; color:#94a3b8; }
   .sb { display:inline-block; font-size:11px; font-weight:700; padding:2px 7px;
         border-radius:4px; margin-right:4px; }
   .sb.new { background:#2563eb; color:#fff; }
@@ -61,7 +63,9 @@
       padding:6px 8px 6px 6px; border-right:1px solid #2d3748; }
   .merged td.snm { line-height:1.6; }
   .rkno { font-weight:700; color:#f1f5f9; font-size:13px; margin-right:6px; }
-  .snm .nmline { display:block; font-size:11px; font-weight:600; color:#e2e8f0;
+  .snm .nmline { display:block; font-size:12px; font-weight:700; color:#f1f5f9;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .snm .subline { display:block; font-size:10px; font-weight:500; color:#64748b;
       white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .merged .mv { font-size:10px; padding:1px 5px; }
   .merged .sb { font-size:9px; padding:1px 4px; margin-right:3px; }
@@ -100,22 +104,22 @@
     <p class="sub">新規ランクイン（前回圏外 &#8594; 上位50入り）・売買代金の急増（前回比+50%超）・順位の急上昇（10位以上ジャンプ）を自動検知。
 お祭りの初動をランキング推移から拾うための欄です。</p>
     <ul>
-<li>🇺🇸 <span class="sb jump">&#9650;10</span><span class="sb surge">代金急増</span> <span class="code">AVGO</span> <strong>Broadcom Inc.</strong><br><span class="detail">17位 &#8594; 7位　売買代金 前回比 +110%（5.5 &#8594; 11.6 B$）</span></li>
-<li>🇺🇸 <span class="sb new">新規IN</span> <span class="code">RDDT</span> <strong>Reddit, Inc. Class A</strong><br><span class="detail">前回圏外 &#8594; 20位</span></li>
-<li>🇺🇸 <span class="sb new">新規IN</span> <span class="code">AAOI</span> <strong>Applied Optoelectronics, Inc.</strong><br><span class="detail">前回圏外 &#8594; 29位</span></li>
-<li>🇺🇸 <span class="sb new">新規IN</span> <span class="code">NU</span> <strong>Nu Holdings Ltd. Class A</strong><br><span class="detail">前回圏外 &#8594; 34位</span></li>
-<li>🇺🇸 <span class="sb new">新規IN</span> <span class="code">GS</span> <strong>Goldman Sachs Group, Inc.</strong><br><span class="detail">前回圏外 &#8594; 46位</span></li>
-<li>🇯🇵 <span class="sb jump">&#9650;11</span> <span class="code">3103</span> <strong>Unitika Ltd.</strong><br><span class="detail">23位 &#8594; 12位</span></li>
-<li>🇯🇵 <span class="sb jump">&#9650;13</span> <span class="code">5016</span> <strong>JX Advanced Metals Corporation</strong><br><span class="detail">28位 &#8594; 15位</span></li>
-<li>🇯🇵 <span class="sb jump">&#9650;10</span> <span class="code">6701</span> <strong>NEC Corporation</strong><br><span class="detail">34位 &#8594; 24位</span></li>
-<li>🇯🇵 <span class="sb new">新規IN</span> <span class="code">6361</span> <strong>Ebara Corporation</strong><br><span class="detail">前回圏外 &#8594; 28位</span></li>
-<li>🇯🇵 <span class="sb new">新規IN</span> <span class="code">3659</span> <strong>NEXON Co., Ltd.</strong><br><span class="detail">前回圏外 &#8594; 32位</span></li>
-<li>🇯🇵 <span class="sb new">新規IN</span> <span class="code">7267</span> <strong>Honda Motor Co., Ltd.</strong><br><span class="detail">前回圏外 &#8594; 33位</span></li>
-<li>🇯🇵 <span class="sb new">新規IN</span> <span class="code">8725</span> <strong>MS&amp;AD Insurance Group Holdings, Inc.</strong><br><span class="detail">前回圏外 &#8594; 39位</span></li>
-<li>🇯🇵 <span class="sb new">新規IN</span> <span class="code">3110</span> <strong>Nitto Boseki Co., Ltd.</strong><br><span class="detail">前回圏外 &#8594; 47位</span></li>
-<li>🇯🇵 <span class="sb new">新規IN</span> <span class="code">8630</span> <strong>Sompo Holdings,Inc.</strong><br><span class="detail">前回圏外 &#8594; 48位</span></li>
-<li>🇯🇵 <span class="sb new">新規IN</span> <span class="code">5713</span> <strong>Sumitomo Metal Mining Co., Ltd.</strong><br><span class="detail">前回圏外 &#8594; 49位</span></li>
-<li>🇯🇵 <span class="sb new">新規IN</span> <span class="code">6890</span> <strong>Ferrotec Corporation</strong><br><span class="detail">前回圏外 &#8594; 50位</span></li>
+<li>🇺🇸 <span class="sb jump">&#9650;10</span><span class="sb surge">代金急増</span> <strong class="prim mono">AVGO</strong> <span class="sec">Broadcom Inc.</span><br><span class="detail">17位 &#8594; 7位　売買代金 前回比 +110%（5.5 &#8594; 11.6 B$）</span></li>
+<li>🇺🇸 <span class="sb new">新規IN</span> <strong class="prim mono">RDDT</strong> <span class="sec">Reddit, Inc. Class A</span><br><span class="detail">前回圏外 &#8594; 20位</span></li>
+<li>🇺🇸 <span class="sb new">新規IN</span> <strong class="prim mono">AAOI</strong> <span class="sec">Applied Optoelectronics, Inc.</span><br><span class="detail">前回圏外 &#8594; 29位</span></li>
+<li>🇺🇸 <span class="sb new">新規IN</span> <strong class="prim mono">NU</strong> <span class="sec">Nu Holdings Ltd. Class A</span><br><span class="detail">前回圏外 &#8594; 34位</span></li>
+<li>🇺🇸 <span class="sb new">新規IN</span> <strong class="prim mono">GS</strong> <span class="sec">Goldman Sachs Group, Inc.</span><br><span class="detail">前回圏外 &#8594; 46位</span></li>
+<li>🇯🇵 <span class="sb jump">&#9650;11</span> <strong class="prim">ユニチカ</strong> <span class="sec mono">3103</span><br><span class="detail">23位 &#8594; 12位</span></li>
+<li>🇯🇵 <span class="sb jump">&#9650;13</span> <strong class="prim">JX金属</strong> <span class="sec mono">5016</span><br><span class="detail">28位 &#8594; 15位</span></li>
+<li>🇯🇵 <span class="sb jump">&#9650;10</span> <strong class="prim">NEC</strong> <span class="sec mono">6701</span><br><span class="detail">34位 &#8594; 24位</span></li>
+<li>🇯🇵 <span class="sb new">新規IN</span> <strong class="prim">荏原</strong> <span class="sec mono">6361</span><br><span class="detail">前回圏外 &#8594; 28位</span></li>
+<li>🇯🇵 <span class="sb new">新規IN</span> <strong class="prim">ネクソン</strong> <span class="sec mono">3659</span><br><span class="detail">前回圏外 &#8594; 32位</span></li>
+<li>🇯🇵 <span class="sb new">新規IN</span> <strong class="prim">ホンダ</strong> <span class="sec mono">7267</span><br><span class="detail">前回圏外 &#8594; 33位</span></li>
+<li>🇯🇵 <span class="sb new">新規IN</span> <strong class="prim">MS&amp;AD</strong> <span class="sec mono">8725</span><br><span class="detail">前回圏外 &#8594; 39位</span></li>
+<li>🇯🇵 <span class="sb new">新規IN</span> <strong class="prim">日東紡</strong> <span class="sec mono">3110</span><br><span class="detail">前回圏外 &#8594; 47位</span></li>
+<li>🇯🇵 <span class="sb new">新規IN</span> <strong class="prim">SOMPO</strong> <span class="sec mono">8630</span><br><span class="detail">前回圏外 &#8594; 48位</span></li>
+<li>🇯🇵 <span class="sb new">新規IN</span> <strong class="prim">住友鉱</strong> <span class="sec mono">5713</span><br><span class="detail">前回圏外 &#8594; 49位</span></li>
+<li>🇯🇵 <span class="sb new">新規IN</span> <strong class="prim">フェローテク</strong> <span class="sec mono">6890</span><br><span class="detail">前回圏外 &#8594; 50位</span></li>
     </ul>
   </section>
   <section id="us">
@@ -131,301 +135,301 @@
       </tr></thead>
       <tbody>
       <tr>
-        <td class="snm"><span class="rkno">1</span><span class="mv pos">&#9650;1</span><span class="nmline"><span class="code">SNDK</span> Sandisk Corporation</span></td>
+        <td class="snm"><span class="rkno">1</span><span class="mv pos">&#9650;1</span><span class="nmline prim mono">SNDK</span><span class="subline sec">Sandisk Corporation</span></td>
         <td class="num">$1,641.11<br><span class="pos">+7.39%</span></td>
         <td class="num">34.2 <span class="unit">B$</span><br><span class="pos">+2%</span></td>
         <td class="hc t5">2</td><td class="hc t5">3</td><td class="hc t5">3</td><td class="hc t10">6</td><td class="hc t10">6</td><td class="hc t10">7</td><td class="hc t5">5</td><td class="hc t5">4</td><td class="hc t5">4</td><td class="hc t10">6</td><td class="hc t5">5</td><td class="hc t10">6</td><td class="hc t5">2</td><td class="hc t5">1</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">2</span><span class="mv neg">&#9660;1</span><span class="nmline"><span class="code">MU</span> Micron Technology, Inc.</span></td>
+        <td class="snm"><span class="rkno">2</span><span class="mv neg">&#9660;1</span><span class="nmline prim mono">MU</span><span class="subline sec">Micron Technology, Inc.</span></td>
         <td class="num">$971.66<br><span class="pos">+2.30%</span></td>
         <td class="num">27.0 <span class="unit">B$</span><br><span class="neg">-22%</span></td>
         <td class="hc t5">1</td><td class="hc t5">1</td><td class="hc t5">1</td><td class="hc t5">1</td><td class="hc t5">1</td><td class="hc t5">1</td><td class="hc t5">2</td><td class="hc t5">1</td><td class="hc t5">2</td><td class="hc t5">2</td><td class="hc t5">1</td><td class="hc t5">1</td><td class="hc t5">1</td><td class="hc t5">2</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">3</span><span class="mv flat">&#8594;</span><span class="nmline"><span class="code">NVDA</span> NVIDIA Corporation</span></td>
+        <td class="snm"><span class="rkno">3</span><span class="mv flat">&#8594;</span><span class="nmline prim mono">NVDA</span><span class="subline sec">NVIDIA Corporation</span></td>
         <td class="num">$225.16<br><span class="neg">-0.06%</span></td>
         <td class="num">17.0 <span class="unit">B$</span><br><span class="neg">-24%</span></td>
         <td class="hc t5">3</td><td class="hc t5">2</td><td class="hc t5">4</td><td class="hc t5">5</td><td class="hc t5">3</td><td class="hc t5">3</td><td class="hc t5">1</td><td class="hc t5">3</td><td class="hc t5">3</td><td class="hc t5">1</td><td class="hc t5">2</td><td class="hc t5">3</td><td class="hc t5">3</td><td class="hc t5">3</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">4</span><span class="mv pos">&#9650;3</span><span class="nmline"><span class="code">TSLA</span> Tesla, Inc.</span></td>
+        <td class="snm"><span class="rkno">4</span><span class="mv pos">&#9650;3</span><span class="nmline prim mono">TSLA</span><span class="subline sec">Tesla, Inc.</span></td>
         <td class="num">$342.27<br><span class="pos">+0.68%</span></td>
         <td class="num">15.5 <span class="unit">B$</span><br><span class="pos">+32%</span></td>
         <td class="hc t10">8</td><td class="hc t10">9</td><td class="hc t10">10</td><td class="hc t10">10</td><td class="hc t10">9</td><td class="hc t25">14</td><td class="hc t25">12</td><td class="hc t10">10</td><td class="hc t10">7</td><td class="hc t25">12</td><td class="hc t25">12</td><td class="hc t25">11</td><td class="hc t10">7</td><td class="hc t5">4</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">5</span><span class="mv neg">&#9660;1</span><span class="nmline"><span class="code">SPCX</span> Space Exploration Technologies Corp</span></td>
+        <td class="snm"><span class="rkno">5</span><span class="mv neg">&#9660;1</span><span class="nmline prim mono">SPCX</span><span class="subline sec">Space Exploration Technologies Corp</span></td>
         <td class="num">$140.00<br><span class="neg">-0.91%</span></td>
         <td class="num">13.5 <span class="unit">B$</span><br><span class="neg">-20%</span></td>
         <td class="hc t25">11</td><td class="hc t25">16</td><td class="hc t25">17</td><td class="hc t25">14</td><td class="hc t25">14</td><td class="hc t10">9</td><td class="hc t5">4</td><td class="hc t5">2</td><td class="hc t5">1</td><td class="hc t5">3</td><td class="hc t5">4</td><td class="hc t5">2</td><td class="hc t5">4</td><td class="hc t5">5</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">6</span><span class="mv pos">&#9650;4</span><span class="nmline"><span class="code">AMD</span> Advanced Micro Devices, Inc.</span></td>
+        <td class="snm"><span class="rkno">6</span><span class="mv pos">&#9650;4</span><span class="nmline prim mono">AMD</span><span class="subline sec">Advanced Micro Devices, Inc.</span></td>
         <td class="num">$514.39<br><span class="pos">+6.50%</span></td>
         <td class="num">13.1 <span class="unit">B$</span><br><span class="pos">+45%</span></td>
         <td class="hc t5">5</td><td class="hc t10">6</td><td class="hc t10">8</td><td class="hc t10">9</td><td class="hc t10">10</td><td class="hc t5">5</td><td class="hc t5">3</td><td class="hc t10">7</td><td class="hc t10">8</td><td class="hc t10">10</td><td class="hc t10">10</td><td class="hc t25">13</td><td class="hc t10">10</td><td class="hc t10">6</td>
       </tr>
       <tr class="sig">
-        <td class="snm"><span class="rkno">7</span><span class="sb jump">&#9650;10</span><span class="sb surge">代金急増</span><span class="nmline"><span class="code">AVGO</span> Broadcom Inc.</span></td>
+        <td class="snm"><span class="rkno">7</span><span class="sb jump">&#9650;10</span><span class="sb surge">代金急増</span><span class="nmline prim mono">AVGO</span><span class="subline sec">Broadcom Inc.</span></td>
         <td class="num">$392.99<br><span class="neg">-5.94%</span></td>
         <td class="num">11.6 <span class="unit">B$</span><br><span class="pos surge">+110%</span></td>
         <td class="hc t25">12</td><td class="hc t25">12</td><td class="hc t25">12</td><td class="hc t25">13</td><td class="hc t25">16</td><td class="hc t25">12</td><td class="hc t25">16</td><td class="hc t25">16</td><td class="hc t25">14</td><td class="hc t25">14</td><td class="hc t25">15</td><td class="hc t25">17</td><td class="hc t25">17</td><td class="hc t10">7</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">8</span><span class="mv neg">&#9660;2</span><span class="nmline"><span class="code">INTC</span> Intel Corporation</span></td>
+        <td class="snm"><span class="rkno">8</span><span class="mv neg">&#9660;2</span><span class="nmline prim mono">INTC</span><span class="subline sec">Intel Corporation</span></td>
         <td class="num">$102.50<br><span class="neg">-1.97%</span></td>
         <td class="num">9.7 <span class="unit">B$</span><br><span class="neg">-20%</span></td>
         <td class="hc t10">6</td><td class="hc t10">8</td><td class="hc t10">9</td><td class="hc t25">12</td><td class="hc t25">13</td><td class="hc t25">11</td><td class="hc t25">14</td><td class="hc t25">11</td><td class="hc t25">11</td><td class="hc t10">9</td><td class="hc t5">3</td><td class="hc t5">5</td><td class="hc t10">6</td><td class="hc t10">8</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">9</span><span class="mv neg">&#9660;4</span><span class="nmline"><span class="code">AAPL</span> Apple Inc.</span></td>
+        <td class="snm"><span class="rkno">9</span><span class="mv neg">&#9660;4</span><span class="nmline prim mono">AAPL</span><span class="subline sec">Apple Inc.</span></td>
         <td class="num">$305.93<br><span class="pos">+0.22%</span></td>
         <td class="num">8.6 <span class="unit">B$</span><br><span class="neg">-30%</span></td>
         <td class="hc t5">4</td><td class="hc t5">4</td><td class="hc t5">5</td><td class="hc t5">2</td><td class="hc t5">5</td><td class="hc t10">6</td><td class="hc t10">8</td><td class="hc t10">6</td><td class="hc t10">9</td><td class="hc t5">5</td><td class="hc t10">7</td><td class="hc t10">8</td><td class="hc t5">5</td><td class="hc t10">9</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">10</span><span class="mv neg">&#9660;1</span><span class="nmline"><span class="code">NBIS</span> Nebius Group N.V. Class A</span></td>
+        <td class="snm"><span class="rkno">10</span><span class="mv neg">&#9660;1</span><span class="nmline prim mono">NBIS</span><span class="subline sec">Nebius Group N.V. Class A</span></td>
         <td class="num">$277.68<br><span class="pos">+8.88%</span></td>
         <td class="num">8.0 <span class="unit">B$</span><br><span class="neg">-13%</span></td>
         <td class="hc t25">19</td><td class="hc t25">17</td><td class="hc t25">13</td><td class="hc t25">19</td><td class="hc t25">17</td><td class="hc t25">23</td><td class="hc t25">23</td><td class="hc t25">18</td><td class="hc t25">20</td><td class="hc t50">26</td><td class="hc t25">17</td><td class="hc t5">4</td><td class="hc t10">9</td><td class="hc t10">10</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">11</span><span class="mv neg">&#9660;3</span><span class="nmline"><span class="code">MSFT</span> Microsoft Corporation</span></td>
+        <td class="snm"><span class="rkno">11</span><span class="mv neg">&#9660;3</span><span class="nmline prim mono">MSFT</span><span class="subline sec">Microsoft Corporation</span></td>
         <td class="num">$495.40<br><span class="neg">-0.30%</span></td>
         <td class="num">8.0 <span class="unit">B$</span><br><span class="neg">-30%</span></td>
         <td class="hc t10">7</td><td class="hc t5">5</td><td class="hc t5">2</td><td class="hc t5">4</td><td class="hc t5">2</td><td class="hc t5">4</td><td class="hc t10">7</td><td class="hc t5">5</td><td class="hc t5">5</td><td class="hc t5">4</td><td class="hc t10">6</td><td class="hc t10">7</td><td class="hc t10">8</td><td class="hc t25">11</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">12</span><span class="mv neg">&#9660;1</span><span class="nmline"><span class="code">AMZN</span> Amazon.com, Inc.</span></td>
+        <td class="snm"><span class="rkno">12</span><span class="mv neg">&#9660;1</span><span class="nmline prim mono">AMZN</span><span class="subline sec">Amazon.com, Inc.</span></td>
         <td class="num">$262.65<br><span class="neg">-0.94%</span></td>
         <td class="num">7.1 <span class="unit">B$</span><br><span class="neg">-16%</span></td>
         <td class="hc t10">9</td><td class="hc t10">10</td><td class="hc t10">6</td><td class="hc t5">3</td><td class="hc t5">4</td><td class="hc t10">8</td><td class="hc t10">9</td><td class="hc t10">9</td><td class="hc t10">10</td><td class="hc t10">8</td><td class="hc t10">9</td><td class="hc t25">15</td><td class="hc t25">11</td><td class="hc t25">12</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">13</span><span class="mv flat">&#8594;</span><span class="nmline"><span class="code">AMAT</span> Applied Materials, Inc.</span></td>
+        <td class="snm"><span class="rkno">13</span><span class="mv flat">&#8594;</span><span class="nmline prim mono">AMAT</span><span class="subline sec">Applied Materials, Inc.</span></td>
         <td class="num">$507.18<br><span class="neg">-5.12%</span></td>
         <td class="num">6.7 <span class="unit">B$</span><br><span class="neg">-3%</span></td>
         <td class="hc t25">22</td><td class="hc t25">21</td><td class="hc t25">18</td><td class="hc t25">23</td><td class="hc t25">25</td><td class="hc t25">25</td><td class="hc t50">30</td><td class="hc t50">37</td><td class="hc t50">34</td><td class="hc t25">19</td><td class="hc t25">20</td><td class="hc t25">25</td><td class="hc t25">13</td><td class="hc t25">13</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">14</span><span class="mv pos">&#9650;2</span><span class="nmline"><span class="code">GOOGL</span> Alphabet Inc. Class A</span></td>
+        <td class="snm"><span class="rkno">14</span><span class="mv pos">&#9650;2</span><span class="nmline prim mono">GOOGL</span><span class="subline sec">Alphabet Inc. Class A</span></td>
         <td class="num">$345.90<br><span class="neg">-0.13%</span></td>
         <td class="num">6.1 <span class="unit">B$</span><br><span class="neg">-1%</span></td>
         <td class="hc t10">10</td><td class="hc t25">11</td><td class="hc t25">11</td><td class="hc t10">7</td><td class="hc t10">8</td><td class="hc t10">10</td><td class="hc t10">6</td><td class="hc t10">8</td><td class="hc t25">12</td><td class="hc t25">13</td><td class="hc t10">8</td><td class="hc t25">14</td><td class="hc t25">16</td><td class="hc t25">14</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">15</span><span class="mv neg">&#9660;1</span><span class="nmline"><span class="code">META</span> Meta Platforms Inc Class A</span></td>
+        <td class="snm"><span class="rkno">15</span><span class="mv neg">&#9660;1</span><span class="nmline prim mono">META</span><span class="subline sec">Meta Platforms Inc Class A</span></td>
         <td class="num">$589.85<br><span class="neg">-0.86%</span></td>
         <td class="num">5.1 <span class="unit">B$</span><br><span class="neg">-22%</span></td>
         <td class="hc t25">13</td><td class="hc t10">7</td><td class="hc t10">7</td><td class="hc t10">8</td><td class="hc t10">7</td><td class="hc t25">15</td><td class="hc t25">13</td><td class="hc t25">13</td><td class="hc t25">13</td><td class="hc t25">11</td><td class="hc t25">11</td><td class="hc t25">12</td><td class="hc t25">14</td><td class="hc t25">15</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">16</span><span class="mv pos">&#9650;8</span><span class="nmline"><span class="code">STX</span> Seagate Technology Holdings PLC</span></td>
+        <td class="snm"><span class="rkno">16</span><span class="mv pos">&#9650;8</span><span class="nmline prim mono">STX</span><span class="subline sec">Seagate Technology Holdings PLC</span></td>
         <td class="num">$973.44<br><span class="pos">+5.65%</span></td>
         <td class="num">5.1 <span class="unit">B$</span><br><span class="pos">+21%</span></td>
         <td class="hc t25">15</td><td class="hc t25">14</td><td class="hc t25">16</td><td class="hc t25">16</td><td class="hc t25">18</td><td class="hc t50">28</td><td class="hc t25">22</td><td class="hc t25">19</td><td class="hc t25">18</td><td class="hc t25">21</td><td class="hc t25">24</td><td class="hc t25">24</td><td class="hc t25">24</td><td class="hc t25">16</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">17</span><span class="mv pos">&#9650;6</span><span class="nmline"><span class="code">WDC</span> Western Digital Corporation</span></td>
+        <td class="snm"><span class="rkno">17</span><span class="mv pos">&#9650;6</span><span class="nmline prim mono">WDC</span><span class="subline sec">Western Digital Corporation</span></td>
         <td class="num">$508.80<br><span class="pos">+4.41%</span></td>
         <td class="num">5.1 <span class="unit">B$</span><br><span class="pos">+20%</span></td>
         <td class="hc t25">20</td><td class="hc t25">22</td><td class="hc t25">22</td><td class="hc t25">17</td><td class="hc t25">19</td><td class="hc t50">27</td><td class="hc t25">18</td><td class="hc t25">12</td><td class="hc t25">16</td><td class="hc t25">24</td><td class="hc t25">23</td><td class="hc t50">32</td><td class="hc t25">23</td><td class="hc t25">17</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">18</span><span class="mv neg">&#9660;3</span><span class="nmline"><span class="code">PLTR</span> Palantir Technologies Inc. Class A</span></td>
+        <td class="snm"><span class="rkno">18</span><span class="mv neg">&#9660;3</span><span class="nmline prim mono">PLTR</span><span class="subline sec">Palantir Technologies Inc. Class A</span></td>
         <td class="num">$174.04<br><span class="neg">-2.78%</span></td>
         <td class="num">4.2 <span class="unit">B$</span><br><span class="neg">-36%</span></td>
         <td class="hc t25">17</td><td class="hc t50">29</td><td class="hc t50">27</td><td class="hc t25">25</td><td class="hc t25">12</td><td class="hc t5">2</td><td class="hc t25">11</td><td class="hc t25">14</td><td class="hc t10">6</td><td class="hc t10">7</td><td class="hc t25">13</td><td class="hc t25">19</td><td class="hc t25">15</td><td class="hc t25">18</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">19</span><span class="mv pos">&#9650;6</span><span class="nmline"><span class="code">LITE</span> Lumentum Holdings, Inc.</span></td>
+        <td class="snm"><span class="rkno">19</span><span class="mv pos">&#9650;6</span><span class="nmline prim mono">LITE</span><span class="subline sec">Lumentum Holdings, Inc.</span></td>
         <td class="num">$926.14<br><span class="pos">+5.19%</span></td>
         <td class="num">3.9 <span class="unit">B$</span><br><span class="neg">-4%</span></td>
         <td class="hc t50">29</td><td class="hc t50">26</td><td class="hc t25">24</td><td class="hc t50">27</td><td class="hc t25">24</td><td class="hc t25">20</td><td class="hc t50">32</td><td class="hc t25">22</td><td class="hc t25">15</td><td class="hc t25">15</td><td class="hc t25">16</td><td class="hc t10">9</td><td class="hc t25">25</td><td class="hc t25">19</td>
       </tr>
       <tr class="sig">
-        <td class="snm"><span class="rkno">20</span><span class="sb new">新規IN</span><span class="nmline"><span class="code">RDDT</span> Reddit, Inc. Class A</span></td>
+        <td class="snm"><span class="rkno">20</span><span class="sb new">新規IN</span><span class="nmline prim mono">RDDT</span><span class="subline sec">Reddit, Inc. Class A</span></td>
         <td class="num">$178.09<br><span class="pos">+12.63%</span></td>
         <td class="num">3.8 <span class="unit">B$</span><br><span class="flat">&#8212;</span></td>
         <td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t25">22</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t25">20</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">21</span><span class="mv neg">&#9660;2</span><span class="nmline"><span class="code">GOOG</span> Alphabet Inc. Class C</span></td>
+        <td class="snm"><span class="rkno">21</span><span class="mv neg">&#9660;2</span><span class="nmline prim mono">GOOG</span><span class="subline sec">Alphabet Inc. Class C</span></td>
         <td class="num">$343.54<br><span class="neg">-0.12%</span></td>
         <td class="num">3.7 <span class="unit">B$</span><br><span class="neg">-27%</span></td>
         <td class="hc t25">14</td><td class="hc t25">15</td><td class="hc t25">19</td><td class="hc t25">11</td><td class="hc t25">11</td><td class="hc t25">17</td><td class="hc t10">10</td><td class="hc t25">15</td><td class="hc t25">17</td><td class="hc t25">16</td><td class="hc t25">14</td><td class="hc t25">21</td><td class="hc t25">19</td><td class="hc t25">21</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">22</span><span class="mv neg">&#9660;4</span><span class="nmline"><span class="code">CRWV</span> CoreWeave, Inc. Class A</span></td>
+        <td class="snm"><span class="rkno">22</span><span class="mv neg">&#9660;4</span><span class="nmline prim mono">CRWV</span><span class="subline sec">CoreWeave, Inc. Class A</span></td>
         <td class="num">$105.26<br><span class="neg">-0.97%</span></td>
         <td class="num">3.5 <span class="unit">B$</span><br><span class="neg">-35%</span></td>
         <td class="hc t-none">&#183;</td><td class="hc t50">50</td><td class="hc t50">30</td><td class="hc t-none">&#183;</td><td class="hc t25">22</td><td class="hc t50">35</td><td class="hc t50">47</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">50</td><td class="hc t25">19</td><td class="hc t10">10</td><td class="hc t25">18</td><td class="hc t25">22</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">23</span><span class="mv pos">&#9650;3</span><span class="nmline"><span class="code">ORCL</span> Oracle Corporation</span></td>
+        <td class="snm"><span class="rkno">23</span><span class="mv pos">&#9650;3</span><span class="nmline prim mono">ORCL</span><span class="subline sec">Oracle Corporation</span></td>
         <td class="num">$150.52<br><span class="neg">-3.65%</span></td>
         <td class="num">3.3 <span class="unit">B$</span><br><span class="neg">-18%</span></td>
         <td class="hc t25">25</td><td class="hc t50">31</td><td class="hc t25">21</td><td class="hc t25">21</td><td class="hc t25">15</td><td class="hc t25">19</td><td class="hc t25">25</td><td class="hc t25">24</td><td class="hc t25">23</td><td class="hc t25">20</td><td class="hc t25">18</td><td class="hc t25">16</td><td class="hc t50">26</td><td class="hc t25">23</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">24</span><span class="mv neg">&#9660;12</span><span class="nmline"><span class="code">CSCO</span> Cisco Systems, Inc.</span></td>
+        <td class="snm"><span class="rkno">24</span><span class="mv neg">&#9660;12</span><span class="nmline prim mono">CSCO</span><span class="subline sec">Cisco Systems, Inc.</span></td>
         <td class="num">$111.68<br><span class="neg">-1.58%</span></td>
         <td class="num">3.3 <span class="unit">B$</span><br><span class="neg">-53%</span></td>
         <td class="hc t50">33</td><td class="hc t50">44</td><td class="hc t50">37</td><td class="hc t50">44</td><td class="hc t50">47</td><td class="hc t50">32</td><td class="hc t50">35</td><td class="hc t-none">&#183;</td><td class="hc t50">47</td><td class="hc t50">30</td><td class="hc t50">36</td><td class="hc t25">22</td><td class="hc t25">12</td><td class="hc t25">24</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">25</span><span class="mv neg">&#9660;3</span><span class="nmline"><span class="code">MRVL</span> Marvell Technology, Inc.</span></td>
+        <td class="snm"><span class="rkno">25</span><span class="mv neg">&#9660;3</span><span class="nmline prim mono">MRVL</span><span class="subline sec">Marvell Technology, Inc.</span></td>
         <td class="num">$222.02<br><span class="neg">-0.07%</span></td>
         <td class="num">3.2 <span class="unit">B$</span><br><span class="neg">-25%</span></td>
         <td class="hc t25">18</td><td class="hc t25">23</td><td class="hc t25">20</td><td class="hc t25">18</td><td class="hc t25">20</td><td class="hc t25">18</td><td class="hc t25">21</td><td class="hc t25">21</td><td class="hc t25">19</td><td class="hc t25">17</td><td class="hc t25">21</td><td class="hc t25">20</td><td class="hc t25">22</td><td class="hc t25">25</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">26</span><span class="mv pos">&#9650;3</span><span class="nmline"><span class="code">CBRS</span> Cerebras Systems, Inc. Class A</span></td>
+        <td class="snm"><span class="rkno">26</span><span class="mv pos">&#9650;3</span><span class="nmline prim mono">CBRS</span><span class="subline sec">Cerebras Systems, Inc. Class A</span></td>
         <td class="num">$218.98<br><span class="neg">-5.21%</span></td>
         <td class="num">3.2 <span class="unit">B$</span><br><span class="neg">-16%</span></td>
         <td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">28</td><td class="hc t50">29</td><td class="hc t50">26</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">27</span><span class="mv pos">&#9650;7</span><span class="nmline"><span class="code">V</span> Visa Inc. Class A</span></td>
+        <td class="snm"><span class="rkno">27</span><span class="mv pos">&#9650;7</span><span class="nmline prim mono">V</span><span class="subline sec">Visa Inc. Class A</span></td>
         <td class="num">$364.15<br><span class="neg">-0.36%</span></td>
         <td class="num">3.0 <span class="unit">B$</span><br><span class="neg">-1%</span></td>
         <td class="hc t25">24</td><td class="hc t25">24</td><td class="hc t50">34</td><td class="hc t50">29</td><td class="hc t50">49</td><td class="hc t50">41</td><td class="hc t50">36</td><td class="hc t50">49</td><td class="hc t50">49</td><td class="hc t50">27</td><td class="hc t50">49</td><td class="hc t-none">&#183;</td><td class="hc t50">34</td><td class="hc t50">27</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">28</span><span class="mv neg">&#9660;7</span><span class="nmline"><span class="code">COHR</span> Coherent Corp.</span></td>
+        <td class="snm"><span class="rkno">28</span><span class="mv neg">&#9660;7</span><span class="nmline prim mono">COHR</span><span class="subline sec">Coherent Corp.</span></td>
         <td class="num">$325.83<br><span class="neg">-0.43%</span></td>
         <td class="num">2.8 <span class="unit">B$</span><br><span class="neg">-33%</span></td>
         <td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">39</td><td class="hc t50">45</td><td class="hc t50">42</td><td class="hc t25">21</td><td class="hc t25">23</td><td class="hc t50">33</td><td class="hc t25">23</td><td class="hc t25">21</td><td class="hc t50">28</td>
       </tr>
       <tr class="sig">
-        <td class="snm"><span class="rkno">29</span><span class="sb new">新規IN</span><span class="nmline"><span class="code">AAOI</span> Applied Optoelectronics, Inc.</span></td>
+        <td class="snm"><span class="rkno">29</span><span class="sb new">新規IN</span><span class="nmline prim mono">AAOI</span><span class="subline sec">Applied Optoelectronics, Inc.</span></td>
         <td class="num">$150.28<br><span class="pos">+15.53%</span></td>
         <td class="num">2.8 <span class="unit">B$</span><br><span class="flat">&#8212;</span></td>
         <td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">42</td><td class="hc t-none">&#183;</td><td class="hc t50">46</td><td class="hc t50">26</td><td class="hc t50">31</td><td class="hc t-none">&#183;</td><td class="hc t50">42</td><td class="hc t-none">&#183;</td><td class="hc t50">29</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">30</span><span class="mv pos">&#9650;6</span><span class="nmline"><span class="code">BE</span> Bloom Energy Corporation Class A</span></td>
+        <td class="snm"><span class="rkno">30</span><span class="mv pos">&#9650;6</span><span class="nmline prim mono">BE</span><span class="subline sec">Bloom Energy Corporation Class A</span></td>
         <td class="num">$229.94<br><span class="neg">-2.66%</span></td>
         <td class="num">2.8 <span class="unit">B$</span><br><span class="pos">+5%</span></td>
         <td class="hc t25">21</td><td class="hc t25">13</td><td class="hc t25">14</td><td class="hc t25">20</td><td class="hc t25">21</td><td class="hc t50">26</td><td class="hc t50">27</td><td class="hc t50">27</td><td class="hc t25">25</td><td class="hc t50">46</td><td class="hc t50">40</td><td class="hc t50">26</td><td class="hc t50">36</td><td class="hc t50">30</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">31</span><span class="mv pos">&#9650;8</span><span class="nmline"><span class="code">LLY</span> Eli Lilly and Company</span></td>
+        <td class="snm"><span class="rkno">31</span><span class="mv pos">&#9650;8</span><span class="nmline prim mono">LLY</span><span class="subline sec">Eli Lilly and Company</span></td>
         <td class="num">$1,180.16<br><span class="neg">-2.39%</span></td>
         <td class="num">2.7 <span class="unit">B$</span><br><span class="pos">+15%</span></td>
         <td class="hc t50">39</td><td class="hc t50">41</td><td class="hc t50">26</td><td class="hc t50">26</td><td class="hc t25">23</td><td class="hc t25">24</td><td class="hc t25">15</td><td class="hc t25">20</td><td class="hc t25">22</td><td class="hc t25">18</td><td class="hc t25">25</td><td class="hc t50">36</td><td class="hc t50">39</td><td class="hc t50">31</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">32</span><span class="mv pos">&#9650;1</span><span class="nmline"><span class="code">LRCX</span> Lam Research Corporation</span></td>
+        <td class="snm"><span class="rkno">32</span><span class="mv pos">&#9650;1</span><span class="nmline prim mono">LRCX</span><span class="subline sec">Lam Research Corporation</span></td>
         <td class="num">$332.36<br><span class="neg">-1.38%</span></td>
         <td class="num">2.5 <span class="unit">B$</span><br><span class="neg">-18%</span></td>
         <td class="hc t25">23</td><td class="hc t25">25</td><td class="hc t25">15</td><td class="hc t25">24</td><td class="hc t50">26</td><td class="hc t25">22</td><td class="hc t50">31</td><td class="hc t50">35</td><td class="hc t50">40</td><td class="hc t50">39</td><td class="hc t50">29</td><td class="hc t50">31</td><td class="hc t50">33</td><td class="hc t50">32</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">33</span><span class="mv neg">&#9660;13</span><span class="nmline"><span class="code">SMCI</span> Super Micro Computer, Inc.</span></td>
+        <td class="snm"><span class="rkno">33</span><span class="mv neg">&#9660;13</span><span class="nmline prim mono">SMCI</span><span class="subline sec">Super Micro Computer, Inc.</span></td>
         <td class="num">$39.84<br><span class="pos">+1.74%</span></td>
         <td class="num">2.5 <span class="unit">B$</span><br><span class="neg">-49%</span></td>
         <td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t25">22</td><td class="hc t25">18</td><td class="hc t25">20</td><td class="hc t50">33</td>
       </tr>
       <tr class="sig">
-        <td class="snm"><span class="rkno">34</span><span class="sb new">新規IN</span><span class="nmline"><span class="code">NU</span> Nu Holdings Ltd. Class A</span></td>
+        <td class="snm"><span class="rkno">34</span><span class="sb new">新規IN</span><span class="nmline prim mono">NU</span><span class="subline sec">Nu Holdings Ltd. Class A</span></td>
         <td class="num">$15.23<br><span class="pos">+9.33%</span></td>
         <td class="num">2.4 <span class="unit">B$</span><br><span class="flat">&#8212;</span></td>
         <td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">34</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">35</span><span class="mv neg">&#9660;4</span><span class="nmline"><span class="code">NFLX</span> Netflix, Inc.</span></td>
+        <td class="snm"><span class="rkno">35</span><span class="mv neg">&#9660;4</span><span class="nmline prim mono">NFLX</span><span class="subline sec">Netflix, Inc.</span></td>
         <td class="num">$78.16<br><span class="neg">-0.10%</span></td>
         <td class="num">2.1 <span class="unit">B$</span><br><span class="neg">-35%</span></td>
         <td class="hc t50">30</td><td class="hc t50">32</td><td class="hc t25">23</td><td class="hc t50">32</td><td class="hc t50">35</td><td class="hc t50">33</td><td class="hc t50">39</td><td class="hc t50">39</td><td class="hc t50">50</td><td class="hc t50">42</td><td class="hc t50">35</td><td class="hc t-none">&#183;</td><td class="hc t50">31</td><td class="hc t50">35</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">36</span><span class="mv pos">&#9650;1</span><span class="nmline"><span class="code">BRK.B</span> Berkshire Hathaway Inc. Class B</span></td>
+        <td class="snm"><span class="rkno">36</span><span class="mv pos">&#9650;1</span><span class="nmline prim mono">BRK.B</span><span class="subline sec">Berkshire Hathaway Inc. Class B</span></td>
         <td class="num">$504.03<br><span class="neg">-0.57%</span></td>
         <td class="num">2.0 <span class="unit">B$</span><br><span class="neg">-16%</span></td>
         <td class="hc t50">31</td><td class="hc t50">43</td><td class="hc t-none">&#183;</td><td class="hc t50">48</td><td class="hc t50">40</td><td class="hc t50">48</td><td class="hc t50">42</td><td class="hc t50">34</td><td class="hc t50">48</td><td class="hc t25">22</td><td class="hc t50">27</td><td class="hc t50">37</td><td class="hc t50">37</td><td class="hc t50">36</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">37</span><span class="mv neg">&#9660;10</span><span class="nmline"><span class="code">DELL</span> Dell Technologies, Inc. Class C</span></td>
+        <td class="snm"><span class="rkno">37</span><span class="mv neg">&#9660;10</span><span class="nmline prim mono">DELL</span><span class="subline sec">Dell Technologies, Inc. Class C</span></td>
         <td class="num">$490.81<br><span class="neg">-0.75%</span></td>
         <td class="num">2.0 <span class="unit">B$</span><br><span class="neg">-51%</span></td>
         <td class="hc t50">27</td><td class="hc t50">47</td><td class="hc t50">45</td><td class="hc t-none">&#183;</td><td class="hc t50">45</td><td class="hc t50">30</td><td class="hc t50">26</td><td class="hc t50">28</td><td class="hc t50">36</td><td class="hc t50">34</td><td class="hc t50">34</td><td class="hc t50">27</td><td class="hc t50">27</td><td class="hc t50">37</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">38</span><span class="mv pos">&#9650;8</span><span class="nmline"><span class="code">MSTR</span> Strategy Inc Class A</span></td>
+        <td class="snm"><span class="rkno">38</span><span class="mv pos">&#9650;8</span><span class="nmline prim mono">MSTR</span><span class="subline sec">Strategy Inc Class A</span></td>
         <td class="num">$93.04<br><span class="neg">-4.18%</span></td>
         <td class="num">1.9 <span class="unit">B$</span><br><span class="pos">+8%</span></td>
         <td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">28</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">46</td><td class="hc t50">38</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">39</span><span class="mv neg">&#9660;4</span><span class="nmline"><span class="code">NOW</span> ServiceNow, Inc.</span></td>
+        <td class="snm"><span class="rkno">39</span><span class="mv neg">&#9660;4</span><span class="nmline prim mono">NOW</span><span class="subline sec">ServiceNow, Inc.</span></td>
         <td class="num">$124.00<br><span class="neg">-2.55%</span></td>
         <td class="num">1.9 <span class="unit">B$</span><br><span class="neg">-37%</span></td>
         <td class="hc t50">26</td><td class="hc t25">19</td><td class="hc t50">29</td><td class="hc t50">41</td><td class="hc t50">27</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">45</td><td class="hc t25">24</td><td class="hc t50">37</td><td class="hc t50">42</td><td class="hc t50">50</td><td class="hc t50">35</td><td class="hc t50">39</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">40</span><span class="mv neg">&#9660;12</span><span class="nmline"><span class="code">IREN</span> IREN Limited</span></td>
+        <td class="snm"><span class="rkno">40</span><span class="mv neg">&#9660;12</span><span class="nmline prim mono">IREN</span><span class="subline sec">IREN Limited</span></td>
         <td class="num">$44.06<br><span class="neg">-1.56%</span></td>
         <td class="num">1.8 <span class="unit">B$</span><br><span class="neg">-53%</span></td>
         <td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">39</td><td class="hc t50">38</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">44</td><td class="hc t50">39</td><td class="hc t50">28</td><td class="hc t50">40</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">41</span><span class="mv pos">&#9650;1</span><span class="nmline"><span class="code">JPM</span> JPMorgan Chase &amp; Co.</span></td>
+        <td class="snm"><span class="rkno">41</span><span class="mv pos">&#9650;1</span><span class="nmline prim mono">JPM</span><span class="subline sec">JPMorgan Chase &amp; Co.</span></td>
         <td class="num">$362.84<br><span class="neg">-0.07%</span></td>
         <td class="num">1.8 <span class="unit">B$</span><br><span class="neg">-1%</span></td>
         <td class="hc t50">47</td><td class="hc t50">38</td><td class="hc t50">41</td><td class="hc t50">40</td><td class="hc t50">38</td><td class="hc t50">36</td><td class="hc t50">46</td><td class="hc t50">40</td><td class="hc t-none">&#183;</td><td class="hc t50">45</td><td class="hc t50">45</td><td class="hc t50">49</td><td class="hc t50">42</td><td class="hc t50">41</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">42</span><span class="mv neg">&#9660;10</span><span class="nmline"><span class="code">CRM</span> Salesforce, Inc.</span></td>
+        <td class="snm"><span class="rkno">42</span><span class="mv neg">&#9660;10</span><span class="nmline prim mono">CRM</span><span class="subline sec">Salesforce, Inc.</span></td>
         <td class="num">$196.21<br><span class="neg">-2.56%</span></td>
         <td class="num">1.7 <span class="unit">B$</span><br><span class="neg">-44%</span></td>
         <td class="hc t50">35</td><td class="hc t50">28</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">37</td><td class="hc t-none">&#183;</td><td class="hc t50">50</td><td class="hc t50">32</td><td class="hc t50">38</td><td class="hc t50">44</td><td class="hc t50">31</td><td class="hc t50">35</td><td class="hc t50">32</td><td class="hc t50">42</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">43</span><span class="mv neg">&#9660;2</span><span class="nmline"><span class="code">WMT</span> Walmart Inc.</span></td>
+        <td class="snm"><span class="rkno">43</span><span class="mv neg">&#9660;2</span><span class="nmline prim mono">WMT</span><span class="subline sec">Walmart Inc.</span></td>
         <td class="num">$115.27<br><span class="neg">-0.39%</span></td>
         <td class="num">1.7 <span class="unit">B$</span><br><span class="neg">-14%</span></td>
         <td class="hc t50">40</td><td class="hc t50">40</td><td class="hc t50">31</td><td class="hc t50">33</td><td class="hc t50">30</td><td class="hc t50">31</td><td class="hc t50">33</td><td class="hc t50">29</td><td class="hc t50">39</td><td class="hc t50">38</td><td class="hc t50">37</td><td class="hc t50">33</td><td class="hc t50">41</td><td class="hc t50">43</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">44</span><span class="mv neg">&#9660;1</span><span class="nmline"><span class="code">PANW</span> Palo Alto Networks, Inc.</span></td>
+        <td class="snm"><span class="rkno">44</span><span class="mv neg">&#9660;1</span><span class="nmline prim mono">PANW</span><span class="subline sec">Palo Alto Networks, Inc.</span></td>
         <td class="num">$384.27<br><span class="neg">-2.96%</span></td>
         <td class="num">1.7 <span class="unit">B$</span><br><span class="neg">-8%</span></td>
         <td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">50</td><td class="hc t-none">&#183;</td><td class="hc t50">33</td><td class="hc t50">37</td><td class="hc t50">41</td><td class="hc t50">41</td><td class="hc t-none">&#183;</td><td class="hc t50">36</td><td class="hc t50">30</td><td class="hc t50">38</td><td class="hc t50">43</td><td class="hc t50">44</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">45</span><span class="mv neg">&#9660;7</span><span class="nmline"><span class="code">APP</span> AppLovin Corp. Class A</span></td>
+        <td class="snm"><span class="rkno">45</span><span class="mv neg">&#9660;7</span><span class="nmline prim mono">APP</span><span class="subline sec">AppLovin Corp. Class A</span></td>
         <td class="num">$315.44<br><span class="pos">+0.89%</span></td>
         <td class="num">1.7 <span class="unit">B$</span><br><span class="neg">-29%</span></td>
         <td class="hc t50">48</td><td class="hc t-none">&#183;</td><td class="hc t50">36</td><td class="hc t25">15</td><td class="hc t-none">&#183;</td><td class="hc t50">38</td><td class="hc t25">19</td><td class="hc t25">17</td><td class="hc t50">31</td><td class="hc t50">41</td><td class="hc t50">26</td><td class="hc t50">29</td><td class="hc t50">38</td><td class="hc t50">45</td>
       </tr>
       <tr class="sig">
-        <td class="snm"><span class="rkno">46</span><span class="sb new">新規IN</span><span class="nmline"><span class="code">GS</span> Goldman Sachs Group, Inc.</span></td>
+        <td class="snm"><span class="rkno">46</span><span class="sb new">新規IN</span><span class="nmline prim mono">GS</span><span class="subline sec">Goldman Sachs Group, Inc.</span></td>
         <td class="num">$1,039.42<br><span class="neg">-0.31%</span></td>
         <td class="num">1.7 <span class="unit">B$</span><br><span class="flat">&#8212;</span></td>
         <td class="hc t50">50</td><td class="hc t50">34</td><td class="hc t50">47</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">40</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">47</td><td class="hc t50">38</td><td class="hc t50">43</td><td class="hc t-none">&#183;</td><td class="hc t50">46</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">47</span><span class="mv pos">&#9650;3</span><span class="nmline"><span class="code">XOM</span> Exxonmobil Holdings Corporation</span></td>
+        <td class="snm"><span class="rkno">47</span><span class="mv pos">&#9650;3</span><span class="nmline prim mono">XOM</span><span class="subline sec">Exxonmobil Holdings Corporation</span></td>
         <td class="num">$160.10<br><span class="pos">+0.94%</span></td>
         <td class="num">1.6 <span class="unit">B$</span><br><span class="neg">-2%</span></td>
         <td class="hc t50">46</td><td class="hc t50">49</td><td class="hc t-none">&#183;</td><td class="hc t50">36</td><td class="hc t50">39</td><td class="hc t-none">&#183;</td><td class="hc t50">49</td><td class="hc t50">50</td><td class="hc t50">30</td><td class="hc t25">25</td><td class="hc t50">32</td><td class="hc t50">40</td><td class="hc t50">50</td><td class="hc t50">47</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">48</span><span class="mv neg">&#9660;18</span><span class="nmline"><span class="code">WDAY</span> Workday, Inc. Class A</span></td>
+        <td class="snm"><span class="rkno">48</span><span class="mv neg">&#9660;18</span><span class="nmline prim mono">WDAY</span><span class="subline sec">Workday, Inc. Class A</span></td>
         <td class="num">$198.68<br><span class="neg">-3.76%</span></td>
         <td class="num">1.6 <span class="unit">B$</span><br><span class="neg">-52%</span></td>
         <td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">30</td><td class="hc t50">48</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">49</span><span class="mv neg">&#9660;9</span><span class="nmline"><span class="code">CAT</span> Caterpillar Inc.</span></td>
+        <td class="snm"><span class="rkno">49</span><span class="mv neg">&#9660;9</span><span class="nmline prim mono">CAT</span><span class="subline sec">Caterpillar Inc.</span></td>
         <td class="num">$856.57<br><span class="pos">+0.23%</span></td>
         <td class="num">1.6 <span class="unit">B$</span><br><span class="neg">-25%</span></td>
         <td class="hc t50">34</td><td class="hc t25">20</td><td class="hc t50">38</td><td class="hc t-none">&#183;</td><td class="hc t50">28</td><td class="hc t25">21</td><td class="hc t50">29</td><td class="hc t50">33</td><td class="hc t50">41</td><td class="hc t-none">&#183;</td><td class="hc t50">41</td><td class="hc t50">30</td><td class="hc t50">40</td><td class="hc t50">49</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">50</span><span class="mv neg">&#9660;6</span><span class="nmline"><span class="code">GEV</span> GE Vernova Inc.</span></td>
+        <td class="snm"><span class="rkno">50</span><span class="mv neg">&#9660;6</span><span class="nmline prim mono">GEV</span><span class="subline sec">GE Vernova Inc.</span></td>
         <td class="num">$1,063.25<br><span class="pos">+1.32%</span></td>
         <td class="num">1.6 <span class="unit">B$</span><br><span class="neg">-12%</span></td>
         <td class="hc t50">28</td><td class="hc t50">30</td><td class="hc t50">33</td><td class="hc t50">39</td><td class="hc t50">48</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">35</td><td class="hc t-none">&#183;</td><td class="hc t50">47</td><td class="hc t-none">&#183;</td><td class="hc t50">44</td><td class="hc t50">50</td>
@@ -449,301 +453,301 @@
       </tr></thead>
       <tbody>
       <tr>
-        <td class="snm"><span class="rkno">1</span><span class="mv flat">&#8594;</span><span class="nmline"><span class="code">285A</span> Kioxia Holdings Corporation</span></td>
+        <td class="snm"><span class="rkno">1</span><span class="mv flat">&#8594;</span><span class="nmline prim">キオクシア</span><span class="subline sec mono">285A</span></td>
         <td class="num">61,840円<br><span class="pos">+15.07%</span></td>
         <td class="num">30,044 <span class="unit">億円</span><br><span class="pos">+24%</span></td>
         <td class="hc t5">1</td><td class="hc t5">1</td><td class="hc t5">1</td><td class="hc t50">33</td><td class="hc t5">1</td><td class="hc t5">1</td><td class="hc t5">1</td><td class="hc t5">1</td><td class="hc t5">1</td><td class="hc t5">1</td><td class="hc t5">1</td><td class="hc t5">1</td><td class="hc t5">1</td><td class="hc t5">1</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">2</span><span class="mv pos">&#9650;2</span><span class="nmline"><span class="code">5803</span> Fujikura Ltd</span></td>
+        <td class="snm"><span class="rkno">2</span><span class="mv pos">&#9650;2</span><span class="nmline prim">フジクラ</span><span class="subline sec mono">5803</span></td>
         <td class="num">6,078円<br><span class="pos">+7.29%</span></td>
         <td class="num">4,023 <span class="unit">億円</span><br><span class="pos">+29%</span></td>
         <td class="hc t10">8</td><td class="hc t10">7</td><td class="hc t10">8</td><td class="hc t5">3</td><td class="hc t10">9</td><td class="hc t5">4</td><td class="hc t5">5</td><td class="hc t10">6</td><td class="hc t5">2</td><td class="hc t5">2</td><td class="hc t5">2</td><td class="hc t5">2</td><td class="hc t5">4</td><td class="hc t5">2</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">3</span><span class="mv neg">&#9660;1</span><span class="nmline"><span class="code">6857</span> Advantest Corp.</span></td>
+        <td class="snm"><span class="rkno">3</span><span class="mv neg">&#9660;1</span><span class="nmline prim">アドテスト</span><span class="subline sec mono">6857</span></td>
         <td class="num">37,780円<br><span class="pos">+2.47%</span></td>
         <td class="num">2,494 <span class="unit">億円</span><br><span class="neg">-32%</span></td>
         <td class="hc t5">3</td><td class="hc t5">2</td><td class="hc t5">2</td><td class="hc t5">2</td><td class="hc t5">2</td><td class="hc t5">2</td><td class="hc t5">3</td><td class="hc t10">7</td><td class="hc t5">4</td><td class="hc t5">3</td><td class="hc t5">4</td><td class="hc t5">5</td><td class="hc t5">2</td><td class="hc t5">3</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">4</span><span class="mv neg">&#9660;1</span><span class="nmline"><span class="code">6976</span> Taiyo Yuden Co., Ltd.</span></td>
+        <td class="snm"><span class="rkno">4</span><span class="mv neg">&#9660;1</span><span class="nmline prim">太陽誘電</span><span class="subline sec mono">6976</span></td>
         <td class="num">11,295円<br><span class="pos">+2.54%</span></td>
         <td class="num">1,715 <span class="unit">億円</span><br><span class="neg">-49%</span></td>
         <td class="hc t10">7</td><td class="hc t10">6</td><td class="hc t10">6</td><td class="hc t-none">&#183;</td><td class="hc t10">6</td><td class="hc t10">8</td><td class="hc t10">6</td><td class="hc t5">2</td><td class="hc t10">6</td><td class="hc t5">4</td><td class="hc t5">3</td><td class="hc t5">3</td><td class="hc t5">3</td><td class="hc t5">4</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">5</span><span class="mv flat">&#8594;</span><span class="nmline"><span class="code">6981</span> Murata Manufacturing Co., Ltd.</span></td>
+        <td class="snm"><span class="rkno">5</span><span class="mv flat">&#8594;</span><span class="nmline prim">村田製</span><span class="subline sec mono">6981</span></td>
         <td class="num">8,290円<br><span class="pos">+0.67%</span></td>
         <td class="num">1,601 <span class="unit">億円</span><br><span class="neg">-40%</span></td>
         <td class="hc t5">5</td><td class="hc t5">5</td><td class="hc t5">5</td><td class="hc t-none">&#183;</td><td class="hc t5">3</td><td class="hc t10">9</td><td class="hc t5">4</td><td class="hc t5">4</td><td class="hc t10">7</td><td class="hc t25">11</td><td class="hc t5">5</td><td class="hc t5">4</td><td class="hc t5">5</td><td class="hc t5">5</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">6</span><span class="mv flat">&#8594;</span><span class="nmline"><span class="code">9984</span> SoftBank Group Corp.</span></td>
+        <td class="snm"><span class="rkno">6</span><span class="mv flat">&#8594;</span><span class="nmline prim">ソフトバンクG</span><span class="subline sec mono">9984</span></td>
         <td class="num">5,886円<br><span class="pos">+2.56%</span></td>
         <td class="num">1,579 <span class="unit">億円</span><br><span class="neg">-34%</span></td>
         <td class="hc t5">2</td><td class="hc t5">4</td><td class="hc t10">7</td><td class="hc t5">4</td><td class="hc t5">4</td><td class="hc t5">3</td><td class="hc t5">2</td><td class="hc t5">5</td><td class="hc t5">5</td><td class="hc t10">7</td><td class="hc t25">13</td><td class="hc t10">10</td><td class="hc t10">6</td><td class="hc t10">6</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">7</span><span class="mv pos">&#9650;1</span><span class="nmline"><span class="code">8035</span> Tokyo Electron Ltd.</span></td>
+        <td class="snm"><span class="rkno">7</span><span class="mv pos">&#9650;1</span><span class="nmline prim">東エレク</span><span class="subline sec mono">8035</span></td>
         <td class="num">60,090円<br><span class="pos">+1.62%</span></td>
         <td class="num">1,522 <span class="unit">億円</span><br><span class="neg">-19%</span></td>
         <td class="hc t5">4</td><td class="hc t5">3</td><td class="hc t5">3</td><td class="hc t5">1</td><td class="hc t5">5</td><td class="hc t10">6</td><td class="hc t10">7</td><td class="hc t10">9</td><td class="hc t25">11</td><td class="hc t10">9</td><td class="hc t10">7</td><td class="hc t10">7</td><td class="hc t10">8</td><td class="hc t10">7</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">8</span><span class="mv neg">&#9660;1</span><span class="nmline"><span class="code">4062</span> IBIDEN CO., LTD.</span></td>
+        <td class="snm"><span class="rkno">8</span><span class="mv neg">&#9660;1</span><span class="nmline prim">イビデン</span><span class="subline sec mono">4062</span></td>
         <td class="num">21,580円<br><span class="pos">+3.82%</span></td>
         <td class="num">1,470 <span class="unit">億円</span><br><span class="neg">-22%</span></td>
         <td class="hc t25">11</td><td class="hc t25">15</td><td class="hc t10">10</td><td class="hc t-none">&#183;</td><td class="hc t25">15</td><td class="hc t25">12</td><td class="hc t10">8</td><td class="hc t10">8</td><td class="hc t10">9</td><td class="hc t5">5</td><td class="hc t10">6</td><td class="hc t10">6</td><td class="hc t10">7</td><td class="hc t10">8</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">9</span><span class="mv pos">&#9650;4</span><span class="nmline"><span class="code">5801</span> Furukawa Electric Co., Ltd.</span></td>
+        <td class="snm"><span class="rkno">9</span><span class="mv pos">&#9650;4</span><span class="nmline prim">古河電</span><span class="subline sec mono">5801</span></td>
         <td class="num">4,298円<br><span class="pos">+5.94%</span></td>
         <td class="num">1,159 <span class="unit">億円</span><br><span class="pos">+10%</span></td>
         <td class="hc t25">25</td><td class="hc t50">34</td><td class="hc t50">37</td><td class="hc t25">12</td><td class="hc t50">34</td><td class="hc t25">13</td><td class="hc t25">15</td><td class="hc t5">3</td><td class="hc t5">3</td><td class="hc t10">6</td><td class="hc t10">8</td><td class="hc t10">8</td><td class="hc t25">13</td><td class="hc t10">9</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">10</span><span class="mv flat">&#8594;</span><span class="nmline"><span class="code">8306</span> Mitsubishi UFJ Financial Group, Inc.</span></td>
+        <td class="snm"><span class="rkno">10</span><span class="mv flat">&#8594;</span><span class="nmline prim">三菱UFJ</span><span class="subline sec mono">8306</span></td>
         <td class="num">3,649円<br><span class="neg">-1.00%</span></td>
         <td class="num">1,055 <span class="unit">億円</span><br><span class="neg">-30%</span></td>
         <td class="hc t10">6</td><td class="hc t10">9</td><td class="hc t10">9</td><td class="hc t10">7</td><td class="hc t10">7</td><td class="hc t10">10</td><td class="hc t10">10</td><td class="hc t10">10</td><td class="hc t25">12</td><td class="hc t25">13</td><td class="hc t25">11</td><td class="hc t10">9</td><td class="hc t10">10</td><td class="hc t10">10</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">11</span><span class="mv neg">&#9660;2</span><span class="nmline"><span class="code">7974</span> Nintendo Co., Ltd.</span></td>
+        <td class="snm"><span class="rkno">11</span><span class="mv neg">&#9660;2</span><span class="nmline prim">任天堂</span><span class="subline sec mono">7974</span></td>
         <td class="num">8,761円<br><span class="neg">-1.56%</span></td>
         <td class="num">1,036 <span class="unit">億円</span><br><span class="neg">-37%</span></td>
         <td class="hc t25">13</td><td class="hc t10">10</td><td class="hc t25">13</td><td class="hc t10">10</td><td class="hc t50">29</td><td class="hc t50">37</td><td class="hc t50">32</td><td class="hc t25">25</td><td class="hc t10">10</td><td class="hc t25">16</td><td class="hc t10">10</td><td class="hc t25">14</td><td class="hc t10">9</td><td class="hc t25">11</td>
       </tr>
       <tr class="sig">
-        <td class="snm"><span class="rkno">12</span><span class="sb jump">&#9650;11</span><span class="nmline"><span class="code">3103</span> Unitika Ltd.</span></td>
+        <td class="snm"><span class="rkno">12</span><span class="sb jump">&#9650;11</span><span class="nmline prim">ユニチカ</span><span class="subline sec mono">3103</span></td>
         <td class="num">1,665円<br><span class="pos">+4.45%</span></td>
         <td class="num">937 <span class="unit">億円</span><br><span class="pos">+28%</span></td>
         <td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">43</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">38</td><td class="hc t25">23</td><td class="hc t25">12</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">13</span><span class="mv neg">&#9660;2</span><span class="nmline"><span class="code">6920</span> Lasertec Corp.</span></td>
+        <td class="snm"><span class="rkno">13</span><span class="mv neg">&#9660;2</span><span class="nmline prim">レーザーテク</span><span class="subline sec mono">6920</span></td>
         <td class="num">39,260円<br><span class="pos">+1.13%</span></td>
         <td class="num">791 <span class="unit">億円</span><br><span class="neg">-45%</span></td>
         <td class="hc t10">10</td><td class="hc t25">13</td><td class="hc t25">14</td><td class="hc t10">6</td><td class="hc t10">8</td><td class="hc t25">11</td><td class="hc t10">9</td><td class="hc t25">12</td><td class="hc t10">8</td><td class="hc t10">10</td><td class="hc t25">12</td><td class="hc t25">11</td><td class="hc t25">11</td><td class="hc t25">13</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">14</span><span class="mv pos">&#9650;7</span><span class="nmline"><span class="code">7011</span> Mitsubishi Heavy Industries, Ltd.</span></td>
+        <td class="snm"><span class="rkno">14</span><span class="mv pos">&#9650;7</span><span class="nmline prim">三菱重</span><span class="subline sec mono">7011</span></td>
         <td class="num">4,350円<br><span class="pos">+2.26%</span></td>
         <td class="num">722 <span class="unit">億円</span><br><span class="neg">-2%</span></td>
         <td class="hc t50">27</td><td class="hc t50">31</td><td class="hc t50">31</td><td class="hc t25">23</td><td class="hc t25">21</td><td class="hc t5">5</td><td class="hc t25">14</td><td class="hc t25">17</td><td class="hc t50">29</td><td class="hc t50">26</td><td class="hc t25">23</td><td class="hc t25">13</td><td class="hc t25">21</td><td class="hc t25">14</td>
       </tr>
       <tr class="sig">
-        <td class="snm"><span class="rkno">15</span><span class="sb jump">&#9650;13</span><span class="nmline"><span class="code">5016</span> JX Advanced Metals Corporation</span></td>
+        <td class="snm"><span class="rkno">15</span><span class="sb jump">&#9650;13</span><span class="nmline prim">JX金属</span><span class="subline sec mono">5016</span></td>
         <td class="num">4,000円<br><span class="pos">+5.68%</span></td>
         <td class="num">692 <span class="unit">億円</span><br><span class="pos">+16%</span></td>
         <td class="hc t25">20</td><td class="hc t25">19</td><td class="hc t25">22</td><td class="hc t10">9</td><td class="hc t50">28</td><td class="hc t25">15</td><td class="hc t25">16</td><td class="hc t25">13</td><td class="hc t25">13</td><td class="hc t25">17</td><td class="hc t25">25</td><td class="hc t25">19</td><td class="hc t50">28</td><td class="hc t25">15</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">16</span><span class="mv pos">&#9650;2</span><span class="nmline"><span class="code">8411</span> Mizuho Financial Group, Inc.</span></td>
+        <td class="snm"><span class="rkno">16</span><span class="mv pos">&#9650;2</span><span class="nmline prim">みずほFG</span><span class="subline sec mono">8411</span></td>
         <td class="num">8,530円<br><span class="neg">-1.04%</span></td>
         <td class="num">658 <span class="unit">億円</span><br><span class="neg">-24%</span></td>
         <td class="hc t25">15</td><td class="hc t25">18</td><td class="hc t25">18</td><td class="hc t25">14</td><td class="hc t25">19</td><td class="hc t25">24</td><td class="hc t25">20</td><td class="hc t25">18</td><td class="hc t25">21</td><td class="hc t25">24</td><td class="hc t25">19</td><td class="hc t25">15</td><td class="hc t25">18</td><td class="hc t25">16</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">17</span><span class="mv flat">&#8594;</span><span class="nmline"><span class="code">9983</span> FAST RETAILING CO., LTD.</span></td>
+        <td class="snm"><span class="rkno">17</span><span class="mv flat">&#8594;</span><span class="nmline prim">ファストリ</span><span class="subline sec mono">9983</span></td>
         <td class="num">76,820円<br><span class="neg">-0.39%</span></td>
         <td class="num">633 <span class="unit">億円</span><br><span class="neg">-30%</span></td>
         <td class="hc t10">9</td><td class="hc t25">14</td><td class="hc t25">16</td><td class="hc t25">15</td><td class="hc t25">17</td><td class="hc t25">16</td><td class="hc t25">17</td><td class="hc t25">16</td><td class="hc t25">20</td><td class="hc t25">25</td><td class="hc t25">17</td><td class="hc t25">20</td><td class="hc t25">17</td><td class="hc t25">17</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">18</span><span class="mv neg">&#9660;2</span><span class="nmline"><span class="code">6758</span> Sony Group Corporation</span></td>
+        <td class="snm"><span class="rkno">18</span><span class="mv neg">&#9660;2</span><span class="nmline prim">ソニーG</span><span class="subline sec mono">6758</span></td>
         <td class="num">3,780円<br><span class="neg">-3.37%</span></td>
         <td class="num">558 <span class="unit">億円</span><br><span class="neg">-40%</span></td>
         <td class="hc t25">18</td><td class="hc t25">16</td><td class="hc t25">17</td><td class="hc t10">8</td><td class="hc t25">18</td><td class="hc t25">21</td><td class="hc t50">27</td><td class="hc t25">23</td><td class="hc t50">26</td><td class="hc t25">22</td><td class="hc t50">27</td><td class="hc t50">27</td><td class="hc t25">16</td><td class="hc t25">18</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">19</span><span class="mv pos">&#9650;1</span><span class="nmline"><span class="code">8316</span> Sumitomo Mitsui Financial Group, Inc.</span></td>
+        <td class="snm"><span class="rkno">19</span><span class="mv pos">&#9650;1</span><span class="nmline prim">三井住友FG</span><span class="subline sec mono">8316</span></td>
         <td class="num">6,918円<br><span class="neg">-0.73%</span></td>
         <td class="num">555 <span class="unit">億円</span><br><span class="neg">-25%</span></td>
         <td class="hc t25">14</td><td class="hc t25">17</td><td class="hc t25">15</td><td class="hc t25">18</td><td class="hc t25">12</td><td class="hc t25">19</td><td class="hc t25">21</td><td class="hc t25">19</td><td class="hc t25">25</td><td class="hc t25">18</td><td class="hc t25">16</td><td class="hc t25">17</td><td class="hc t25">20</td><td class="hc t25">19</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">20</span><span class="mv neg">&#9660;1</span><span class="nmline"><span class="code">6146</span> Disco Corporation</span></td>
+        <td class="snm"><span class="rkno">20</span><span class="mv neg">&#9660;1</span><span class="nmline prim">ディスコ</span><span class="subline sec mono">6146</span></td>
         <td class="num">65,910円<br><span class="pos">+0.67%</span></td>
         <td class="num">549 <span class="unit">億円</span><br><span class="neg">-33%</span></td>
         <td class="hc t25">12</td><td class="hc t25">12</td><td class="hc t25">12</td><td class="hc t5">5</td><td class="hc t10">10</td><td class="hc t25">14</td><td class="hc t25">18</td><td class="hc t25">14</td><td class="hc t25">15</td><td class="hc t25">14</td><td class="hc t25">15</td><td class="hc t25">12</td><td class="hc t25">19</td><td class="hc t25">20</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">21</span><span class="mv neg">&#9660;7</span><span class="nmline"><span class="code">6525</span> Kokusai Electric Corporation</span></td>
+        <td class="snm"><span class="rkno">21</span><span class="mv neg">&#9660;7</span><span class="nmline prim">コクサイエレ</span><span class="subline sec mono">6525</span></td>
         <td class="num">9,306円<br><span class="pos">+1.30%</span></td>
         <td class="num">542 <span class="unit">億円</span><br><span class="neg">-45%</span></td>
         <td class="hc t50">28</td><td class="hc t25">21</td><td class="hc t25">21</td><td class="hc t-none">&#183;</td><td class="hc t25">16</td><td class="hc t25">18</td><td class="hc t50">28</td><td class="hc t25">11</td><td class="hc t25">16</td><td class="hc t50">28</td><td class="hc t50">26</td><td class="hc t25">16</td><td class="hc t25">14</td><td class="hc t25">21</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">22</span><span class="mv pos">&#9650;5</span><span class="nmline"><span class="code">6501</span> Hitachi, Ltd.</span></td>
+        <td class="snm"><span class="rkno">22</span><span class="mv pos">&#9650;5</span><span class="nmline prim">日立</span><span class="subline sec mono">6501</span></td>
         <td class="num">5,571円<br><span class="neg">-3.40%</span></td>
         <td class="num">540 <span class="unit">億円</span><br><span class="neg">-12%</span></td>
         <td class="hc t25">22</td><td class="hc t50">26</td><td class="hc t25">11</td><td class="hc t25">19</td><td class="hc t25">25</td><td class="hc t25">17</td><td class="hc t25">22</td><td class="hc t25">22</td><td class="hc t25">22</td><td class="hc t25">20</td><td class="hc t25">21</td><td class="hc t50">28</td><td class="hc t50">27</td><td class="hc t25">22</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">23</span><span class="mv neg">&#9660;8</span><span class="nmline"><span class="code">6098</span> Recruit Holdings Co., Ltd.</span></td>
+        <td class="snm"><span class="rkno">23</span><span class="mv neg">&#9660;8</span><span class="nmline prim">リクルート</span><span class="subline sec mono">6098</span></td>
         <td class="num">16,380円<br><span class="neg">-0.46%</span></td>
         <td class="num">534 <span class="unit">億円</span><br><span class="neg">-45%</span></td>
         <td class="hc t25">21</td><td class="hc t25">22</td><td class="hc t50">29</td><td class="hc t50">26</td><td class="hc t50">36</td><td class="hc t50">39</td><td class="hc t50">38</td><td class="hc t50">31</td><td class="hc t50">34</td><td class="hc t25">15</td><td class="hc t10">9</td><td class="hc t25">18</td><td class="hc t25">15</td><td class="hc t25">23</td>
       </tr>
       <tr class="sig">
-        <td class="snm"><span class="rkno">24</span><span class="sb jump">&#9650;10</span><span class="nmline"><span class="code">6701</span> NEC Corporation</span></td>
+        <td class="snm"><span class="rkno">24</span><span class="sb jump">&#9650;10</span><span class="nmline prim">NEC</span><span class="subline sec mono">6701</span></td>
         <td class="num">4,786円<br><span class="neg">-7.39%</span></td>
         <td class="num">516 <span class="unit">億円</span><br><span class="pos">+11%</span></td>
         <td class="hc t50">46</td><td class="hc t50">41</td><td class="hc t25">19</td><td class="hc t50">35</td><td class="hc t-none">&#183;</td><td class="hc t50">49</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">44</td><td class="hc t50">47</td><td class="hc t50">40</td><td class="hc t-none">&#183;</td><td class="hc t50">34</td><td class="hc t25">24</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">25</span><span class="mv pos">&#9650;1</span><span class="nmline"><span class="code">6861</span> Keyence Corporation</span></td>
+        <td class="snm"><span class="rkno">25</span><span class="mv pos">&#9650;1</span><span class="nmline prim">キーエンス</span><span class="subline sec mono">6861</span></td>
         <td class="num">86,750円<br><span class="neg">-1.04%</span></td>
         <td class="num">511 <span class="unit">億円</span><br><span class="neg">-17%</span></td>
         <td class="hc t25">23</td><td class="hc t25">11</td><td class="hc t25">20</td><td class="hc t25">20</td><td class="hc t50">31</td><td class="hc t25">22</td><td class="hc t25">19</td><td class="hc t25">21</td><td class="hc t25">24</td><td class="hc t50">36</td><td class="hc t50">28</td><td class="hc t50">32</td><td class="hc t50">26</td><td class="hc t25">25</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">26</span><span class="mv pos">&#9650;3</span><span class="nmline"><span class="code">5706</span> Mitsui Kinzoku Co., Ltd.</span></td>
+        <td class="snm"><span class="rkno">26</span><span class="mv pos">&#9650;3</span><span class="nmline prim">三井金属</span><span class="subline sec mono">5706</span></td>
         <td class="num">31,590円<br><span class="pos">+7.54%</span></td>
         <td class="num">509 <span class="unit">億円</span><br><span class="neg">-11%</span></td>
         <td class="hc t50">45</td><td class="hc t-none">&#183;</td><td class="hc t50">40</td><td class="hc t50">27</td><td class="hc t50">50</td><td class="hc t50">48</td><td class="hc t50">33</td><td class="hc t50">37</td><td class="hc t50">28</td><td class="hc t10">8</td><td class="hc t25">18</td><td class="hc t25">23</td><td class="hc t50">29</td><td class="hc t50">26</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">27</span><span class="mv neg">&#9660;5</span><span class="nmline"><span class="code">3436</span> SUMCO Corporation</span></td>
+        <td class="snm"><span class="rkno">27</span><span class="mv neg">&#9660;5</span><span class="nmline prim">SUMCO</span><span class="subline sec mono">3436</span></td>
         <td class="num">4,061円<br><span class="pos">+3.60%</span></td>
         <td class="num">502 <span class="unit">億円</span><br><span class="neg">-31%</span></td>
         <td class="hc t50">26</td><td class="hc t50">30</td><td class="hc t25">24</td><td class="hc t50">39</td><td class="hc t25">23</td><td class="hc t50">26</td><td class="hc t50">34</td><td class="hc t50">28</td><td class="hc t25">19</td><td class="hc t50">29</td><td class="hc t50">34</td><td class="hc t50">26</td><td class="hc t25">22</td><td class="hc t50">27</td>
       </tr>
       <tr class="sig">
-        <td class="snm"><span class="rkno">28</span><span class="sb new">新規IN</span><span class="nmline"><span class="code">6361</span> Ebara Corporation</span></td>
+        <td class="snm"><span class="rkno">28</span><span class="sb new">新規IN</span><span class="nmline prim">荏原</span><span class="subline sec mono">6361</span></td>
         <td class="num">5,482円<br><span class="neg">-6.45%</span></td>
         <td class="num">489 <span class="unit">億円</span><br><span class="flat">&#8212;</span></td>
         <td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">27</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">28</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">29</span><span class="mv neg">&#9660;4</span><span class="nmline"><span class="code">5802</span> Sumitomo Electric Industries, Ltd.</span></td>
+        <td class="snm"><span class="rkno">29</span><span class="mv neg">&#9660;4</span><span class="nmline prim">住友電</span><span class="subline sec mono">5802</span></td>
         <td class="num">2,473円<br><span class="pos">+3.65%</span></td>
         <td class="num">472 <span class="unit">億円</span><br><span class="neg">-29%</span></td>
         <td class="hc t50">34</td><td class="hc t50">33</td><td class="hc t50">32</td><td class="hc t25">11</td><td class="hc t25">24</td><td class="hc t50">27</td><td class="hc t25">24</td><td class="hc t25">20</td><td class="hc t25">23</td><td class="hc t50">27</td><td class="hc t25">24</td><td class="hc t25">24</td><td class="hc t25">25</td><td class="hc t50">29</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">30</span><span class="mv neg">&#9660;6</span><span class="nmline"><span class="code">7203</span> Toyota Motor Corp.</span></td>
+        <td class="snm"><span class="rkno">30</span><span class="mv neg">&#9660;6</span><span class="nmline prim">トヨタ</span><span class="subline sec mono">7203</span></td>
         <td class="num">3,013円<br><span class="neg">-0.23%</span></td>
         <td class="num">466 <span class="unit">億円</span><br><span class="neg">-30%</span></td>
         <td class="hc t25">16</td><td class="hc t10">8</td><td class="hc t5">4</td><td class="hc t25">13</td><td class="hc t25">14</td><td class="hc t10">7</td><td class="hc t25">12</td><td class="hc t25">15</td><td class="hc t25">18</td><td class="hc t25">19</td><td class="hc t25">20</td><td class="hc t25">22</td><td class="hc t25">24</td><td class="hc t50">30</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">31</span><span class="mv neg">&#9660;19</span><span class="nmline"><span class="code">7936</span> Asics Corporation</span></td>
+        <td class="snm"><span class="rkno">31</span><span class="mv neg">&#9660;19</span><span class="nmline prim">アシックス</span><span class="subline sec mono">7936</span></td>
         <td class="num">5,148円<br><span class="neg">-2.52%</span></td>
         <td class="num">448 <span class="unit">億円</span><br><span class="neg">-68%</span></td>
         <td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">44</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">46</td><td class="hc t-none">&#183;</td><td class="hc t25">12</td><td class="hc t50">31</td>
       </tr>
       <tr class="sig">
-        <td class="snm"><span class="rkno">32</span><span class="sb new">新規IN</span><span class="nmline"><span class="code">3659</span> NEXON Co., Ltd.</span></td>
+        <td class="snm"><span class="rkno">32</span><span class="sb new">新規IN</span><span class="nmline prim">ネクソン</span><span class="subline sec mono">3659</span></td>
         <td class="num">3,045円<br><span class="pos">+0.76%</span></td>
         <td class="num">441 <span class="unit">億円</span><br><span class="flat">&#8212;</span></td>
         <td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">32</td>
       </tr>
       <tr class="sig">
-        <td class="snm"><span class="rkno">33</span><span class="sb new">新規IN</span><span class="nmline"><span class="code">7267</span> Honda Motor Co., Ltd.</span></td>
+        <td class="snm"><span class="rkno">33</span><span class="sb new">新規IN</span><span class="nmline prim">ホンダ</span><span class="subline sec mono">7267</span></td>
         <td class="num">1,687円<br><span class="pos">+1.75%</span></td>
         <td class="num">432 <span class="unit">億円</span><br><span class="flat">&#8212;</span></td>
         <td class="hc t50">44</td><td class="hc t50">38</td><td class="hc t50">50</td><td class="hc t50">50</td><td class="hc t50">49</td><td class="hc t-none">&#183;</td><td class="hc t50">46</td><td class="hc t50">42</td><td class="hc t50">43</td><td class="hc t-none">&#183;</td><td class="hc t50">48</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">33</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">34</span><span class="mv pos">&#9650;5</span><span class="nmline"><span class="code">8766</span> Tokio Marine Holdings, Inc.</span></td>
+        <td class="snm"><span class="rkno">34</span><span class="mv pos">&#9650;5</span><span class="nmline prim">東京海上</span><span class="subline sec mono">8766</span></td>
         <td class="num">7,481円<br><span class="neg">-0.78%</span></td>
         <td class="num">409 <span class="unit">億円</span><br><span class="pos">+4%</span></td>
         <td class="hc t50">37</td><td class="hc t50">42</td><td class="hc t50">42</td><td class="hc t50">45</td><td class="hc t50">38</td><td class="hc t50">50</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">43</td><td class="hc t50">44</td><td class="hc t50">30</td><td class="hc t50">39</td><td class="hc t50">34</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">35</span><span class="mv flat">&#8594;</span><span class="nmline"><span class="code">9432</span> NTT Inc</span></td>
+        <td class="snm"><span class="rkno">35</span><span class="mv flat">&#8594;</span><span class="nmline prim">NTT</span><span class="subline sec mono">9432</span></td>
         <td class="num">161.5円<br><span class="neg">-0.74%</span></td>
         <td class="num">392 <span class="unit">億円</span><br><span class="neg">-11%</span></td>
         <td class="hc t50">32</td><td class="hc t25">23</td><td class="hc t50">47</td><td class="hc t50">32</td><td class="hc t50">39</td><td class="hc t50">47</td><td class="hc t50">45</td><td class="hc t50">27</td><td class="hc t50">31</td><td class="hc t50">37</td><td class="hc t50">39</td><td class="hc t50">40</td><td class="hc t50">35</td><td class="hc t50">35</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">36</span><span class="mv neg">&#9660;5</span><span class="nmline"><span class="code">8136</span> Sanrio Co. Ltd.</span></td>
+        <td class="snm"><span class="rkno">36</span><span class="mv neg">&#9660;5</span><span class="nmline prim">サンリオ</span><span class="subline sec mono">8136</span></td>
         <td class="num">1,212円<br><span class="neg">-5.50%</span></td>
         <td class="num">355 <span class="unit">億円</span><br><span class="neg">-36%</span></td>
         <td class="hc t50">30</td><td class="hc t50">39</td><td class="hc t50">45</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">35</td><td class="hc t25">21</td><td class="hc t25">14</td><td class="hc t50">33</td><td class="hc t50">31</td><td class="hc t50">36</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">37</span><span class="mv flat">&#8594;</span><span class="nmline"><span class="code">6723</span> Renesas Electronics Corporation</span></td>
+        <td class="snm"><span class="rkno">37</span><span class="mv flat">&#8594;</span><span class="nmline prim">ルネサス</span><span class="subline sec mono">6723</span></td>
         <td class="num">3,873円<br><span class="pos">+3.39%</span></td>
         <td class="num">355 <span class="unit">億円</span><br><span class="neg">-14%</span></td>
         <td class="hc t50">29</td><td class="hc t25">24</td><td class="hc t50">30</td><td class="hc t25">22</td><td class="hc t25">11</td><td class="hc t25">23</td><td class="hc t25">23</td><td class="hc t50">29</td><td class="hc t50">36</td><td class="hc t50">41</td><td class="hc t50">41</td><td class="hc t50">35</td><td class="hc t50">37</td><td class="hc t50">37</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">38</span><span class="mv neg">&#9660;6</span><span class="nmline"><span class="code">6954</span> Fanuc Corporation</span></td>
+        <td class="snm"><span class="rkno">38</span><span class="mv neg">&#9660;6</span><span class="nmline prim">ファナック</span><span class="subline sec mono">6954</span></td>
         <td class="num">6,523円<br><span class="pos">+1.37%</span></td>
         <td class="num">328 <span class="unit">億円</span><br><span class="neg">-33%</span></td>
         <td class="hc t50">36</td><td class="hc t50">32</td><td class="hc t50">35</td><td class="hc t25">25</td><td class="hc t25">13</td><td class="hc t25">20</td><td class="hc t50">29</td><td class="hc t50">36</td><td class="hc t50">32</td><td class="hc t50">40</td><td class="hc t50">33</td><td class="hc t25">25</td><td class="hc t50">32</td><td class="hc t50">38</td>
       </tr>
       <tr class="sig">
-        <td class="snm"><span class="rkno">39</span><span class="sb new">新規IN</span><span class="nmline"><span class="code">8725</span> MS&amp;AD Insurance Group Holdings, Inc.</span></td>
+        <td class="snm"><span class="rkno">39</span><span class="sb new">新規IN</span><span class="nmline prim">MS&amp;AD</span><span class="subline sec mono">8725</span></td>
         <td class="num">4,925円<br><span class="pos">+1.84%</span></td>
         <td class="num">317 <span class="unit">億円</span><br><span class="flat">&#8212;</span></td>
         <td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">39</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">40</span><span class="mv neg">&#9660;10</span><span class="nmline"><span class="code">6752</span> Panasonic Holdings Corporation</span></td>
+        <td class="snm"><span class="rkno">40</span><span class="mv neg">&#9660;10</span><span class="nmline prim">パナHD</span><span class="subline sec mono">6752</span></td>
         <td class="num">4,788円<br><span class="pos">+1.42%</span></td>
         <td class="num">316 <span class="unit">億円</span><br><span class="neg">-44%</span></td>
         <td class="hc t50">40</td><td class="hc t50">43</td><td class="hc t50">36</td><td class="hc t-none">&#183;</td><td class="hc t25">20</td><td class="hc t50">29</td><td class="hc t50">36</td><td class="hc t50">49</td><td class="hc t50">49</td><td class="hc t-none">&#183;</td><td class="hc t50">30</td><td class="hc t50">43</td><td class="hc t50">30</td><td class="hc t50">40</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">41</span><span class="mv neg">&#9660;5</span><span class="nmline"><span class="code">8058</span> Mitsubishi Corporation</span></td>
+        <td class="snm"><span class="rkno">41</span><span class="mv neg">&#9660;5</span><span class="nmline prim">三菱商</span><span class="subline sec mono">8058</span></td>
         <td class="num">4,709円<br><span class="neg">-1.26%</span></td>
         <td class="num">312 <span class="unit">億円</span><br><span class="neg">-27%</span></td>
         <td class="hc t50">42</td><td class="hc t50">50</td><td class="hc t-none">&#183;</td><td class="hc t50">40</td><td class="hc t25">22</td><td class="hc t50">40</td><td class="hc t50">43</td><td class="hc t-none">&#183;</td><td class="hc t50">46</td><td class="hc t50">49</td><td class="hc t50">43</td><td class="hc t50">49</td><td class="hc t50">36</td><td class="hc t50">41</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">42</span><span class="mv pos">&#9650;2</span><span class="nmline"><span class="code">6871</span> Micronics Japan Co., Ltd.</span></td>
+        <td class="snm"><span class="rkno">42</span><span class="mv pos">&#9650;2</span><span class="nmline prim">日本マイクロ</span><span class="subline sec mono">6871</span></td>
         <td class="num">15,320円<br><span class="pos">+2.00%</span></td>
         <td class="num">307 <span class="unit">億円</span><br><span class="neg">-11%</span></td>
         <td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">34</td><td class="hc t50">44</td><td class="hc t50">42</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">43</span><span class="mv pos">&#9650;3</span><span class="nmline"><span class="code">4004</span> Resonac Holdings Corporation</span></td>
+        <td class="snm"><span class="rkno">43</span><span class="mv pos">&#9650;3</span><span class="nmline prim">レゾナック</span><span class="subline sec mono">4004</span></td>
         <td class="num">17,200円<br><span class="pos">+4.46%</span></td>
         <td class="num">305 <span class="unit">億円</span><br><span class="neg">-6%</span></td>
         <td class="hc t50">39</td><td class="hc t50">40</td><td class="hc t50">43</td><td class="hc t50">30</td><td class="hc t50">46</td><td class="hc t50">35</td><td class="hc t50">26</td><td class="hc t50">33</td><td class="hc t25">14</td><td class="hc t50">31</td><td class="hc t25">22</td><td class="hc t25">21</td><td class="hc t50">46</td><td class="hc t50">43</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">44</span><span class="mv neg">&#9660;6</span><span class="nmline"><span class="code">7735</span> SCREEN Holdings Co., Ltd</span></td>
+        <td class="snm"><span class="rkno">44</span><span class="mv neg">&#9660;6</span><span class="nmline prim">スクリン</span><span class="subline sec mono">7735</span></td>
         <td class="num">14,615円<br><span class="pos">+2.38%</span></td>
         <td class="num">287 <span class="unit">億円</span><br><span class="neg">-29%</span></td>
         <td class="hc t50">31</td><td class="hc t25">20</td><td class="hc t25">23</td><td class="hc t25">17</td><td class="hc t50">33</td><td class="hc t25">25</td><td class="hc t50">37</td><td class="hc t50">26</td><td class="hc t50">39</td><td class="hc t-none">&#183;</td><td class="hc t50">35</td><td class="hc t50">36</td><td class="hc t50">38</td><td class="hc t50">44</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">45</span><span class="mv neg">&#9660;5</span><span class="nmline"><span class="code">4063</span> Shin-Etsu Chemical Co., Ltd.</span></td>
+        <td class="snm"><span class="rkno">45</span><span class="mv neg">&#9660;5</span><span class="nmline prim">信越化</span><span class="subline sec mono">4063</span></td>
         <td class="num">6,385円<br><span class="pos">+0.20%</span></td>
         <td class="num">273 <span class="unit">億円</span><br><span class="neg">-30%</span></td>
         <td class="hc t25">17</td><td class="hc t50">27</td><td class="hc t50">28</td><td class="hc t25">16</td><td class="hc t50">32</td><td class="hc t50">42</td><td class="hc t50">31</td><td class="hc t50">39</td><td class="hc t50">42</td><td class="hc t50">32</td><td class="hc t50">37</td><td class="hc t50">46</td><td class="hc t50">40</td><td class="hc t50">45</td>
       </tr>
       <tr>
-        <td class="snm"><span class="rkno">46</span><span class="mv neg">&#9660;5</span><span class="nmline"><span class="code">7013</span> IHI Corporation</span></td>
+        <td class="snm"><span class="rkno">46</span><span class="mv neg">&#9660;5</span><span class="nmline prim">IHI</span><span class="subline sec mono">7013</span></td>
         <td class="num">3,011円<br><span class="neg">-0.56%</span></td>
         <td class="num">265 <span class="unit">億円</span><br><span class="neg">-28%</span></td>
         <td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">41</td><td class="hc t50">45</td><td class="hc t50">30</td><td class="hc t25">13</td><td class="hc t50">30</td><td class="hc t50">37</td><td class="hc t50">38</td><td class="hc t50">32</td><td class="hc t50">31</td><td class="hc t50">41</td><td class="hc t50">46</td>
       </tr>
       <tr class="sig">
-        <td class="snm"><span class="rkno">47</span><span class="sb new">新規IN</span><span class="nmline"><span class="code">3110</span> Nitto Boseki Co., Ltd.</span></td>
+        <td class="snm"><span class="rkno">47</span><span class="sb new">新規IN</span><span class="nmline prim">日東紡</span><span class="subline sec mono">3110</span></td>
         <td class="num">3,440円<br><span class="pos">+8.69%</span></td>
         <td class="num">262 <span class="unit">億円</span><br><span class="flat">&#8212;</span></td>
         <td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">40</td><td class="hc t25">24</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">49</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">47</td>
       </tr>
       <tr class="sig">
-        <td class="snm"><span class="rkno">48</span><span class="sb new">新規IN</span><span class="nmline"><span class="code">8630</span> Sompo Holdings,Inc.</span></td>
+        <td class="snm"><span class="rkno">48</span><span class="sb new">新規IN</span><span class="nmline prim">SOMPO</span><span class="subline sec mono">8630</span></td>
         <td class="num">6,714円<br><span class="neg">-4.24%</span></td>
         <td class="num">261 <span class="unit">億円</span><br><span class="flat">&#8212;</span></td>
         <td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">48</td>
       </tr>
       <tr class="sig">
-        <td class="snm"><span class="rkno">49</span><span class="sb new">新規IN</span><span class="nmline"><span class="code">5713</span> Sumitomo Metal Mining Co., Ltd.</span></td>
+        <td class="snm"><span class="rkno">49</span><span class="sb new">新規IN</span><span class="nmline prim">住友鉱</span><span class="subline sec mono">5713</span></td>
         <td class="num">9,947円<br><span class="pos">+3.78%</span></td>
         <td class="num">239 <span class="unit">億円</span><br><span class="flat">&#8212;</span></td>
         <td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">43</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">35</td><td class="hc t50">38</td><td class="hc t25">12</td><td class="hc t50">29</td><td class="hc t50">37</td><td class="hc t-none">&#183;</td><td class="hc t50">49</td>
       </tr>
       <tr class="sig">
-        <td class="snm"><span class="rkno">50</span><span class="sb new">新規IN</span><span class="nmline"><span class="code">6890</span> Ferrotec Corporation</span></td>
+        <td class="snm"><span class="rkno">50</span><span class="sb new">新規IN</span><span class="nmline prim">フェローテク</span><span class="subline sec mono">6890</span></td>
         <td class="num">9,750円<br><span class="pos">+7.03%</span></td>
         <td class="num">234 <span class="unit">億円</span><br><span class="flat">&#8212;</span></td>
         <td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t-none">&#183;</td><td class="hc t50">50</td>
