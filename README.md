@@ -2,7 +2,10 @@
 
 日米の株式売買代金（Value Traded）ランキング上位25銘柄を、GitHub Actions で毎営業日に自動記録・公開しています。
 
-**閲覧ページ: https://fabproducts.github.io/rankings/**
+**閲覧ページ**
+
+- 米国株: https://fabproducts.github.io/rankings/
+- 日本株: https://fabproducts.github.io/rankings/jp.html
 
 ## 仕組み
 
@@ -17,7 +20,7 @@
 - `data/rankings_us.csv` … 米国株の日次記録（日付は米国東部時間のセッション日）
 - `data/rankings_jp.csv` … 日本株の日次記録（日付は日本時間のセッション日）
 - `scripts/record.py` … ランキング取得・CSV追記（冪等: 同一セッション日は再記録しない。休場日は前回とデータ同一のためスキップ）
-- `scripts/build_html.py` … CSV から `index.html` を生成
+- `scripts/build_html.py` … CSV から公開ページを生成（米国株 → `index.html` / 日本株 → `jp.html`。市場ごとに1ページ、相互にタブで行き来）
 - `.github/workflows/record.yml` … 日次実行ワークフロー
 
 ## CSVフォーマット
